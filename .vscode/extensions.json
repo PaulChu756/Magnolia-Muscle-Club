@@ -11,6 +11,9 @@
         "gitlab.gitlab-workflow",
         "yzhang.markdown-all-in-one",
         "mhutchie.git-graph",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.pylint",
     ]
 }
