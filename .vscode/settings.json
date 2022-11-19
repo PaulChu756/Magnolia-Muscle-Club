@@ -39,6 +39,7 @@
         "*.html": "django-html",
     },
     "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
         },
@@ -125,5 +126,9 @@
     "cSpell.ignorePaths": [
         ".git/objects",
         ".vscode",
-    ]
+        ".venv/",
+    ],
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.osx": "zsh",
 }
