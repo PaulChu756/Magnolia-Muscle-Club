@@ -35,7 +35,6 @@
         ".vscode test": true
     },
     "git.allowForcePush": true,
-    "editor.formatOnSave": true,
     "files.associations": {
         "*.html": "django-html",
     },
@@ -43,12 +42,18 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
         },
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnType": true
     },
     "[html]": {
-        "editor.defaultFormatter": "monosans.djlint"
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true,
     },
     "[django-html]": {
-        "editor.defaultFormatter": "monosans.djlint"
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true,
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
@@ -62,8 +67,13 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
             "source.fixAll": true,
-        }
+        },
+        "editor.formatOnSave": true,
     },
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true,
@@ -82,16 +92,6 @@
         }
     },
     "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": true,
-    "python.linting.pydocstyleEnabled": true,
-    "python.linting.pydocstyleArgs": [
-        "--line-length=100",
-        "--ignore=D213,D203,D104,D406"
-    ],
-    "python.linting.pycodestyleArgs": [
-        "--line-length=100",
-        "--ignore=E501"
-    ],
     "python.testing.promptToConfigure": true,
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
@@ -104,18 +104,11 @@
         "source.fixAll.eslint": true
     },
     "python.languageServer": "Pylance",
-    "typescript.preferences.importModuleSpecifier": "relative",
     "python.linting.pylamaEnabled": true,
     "python.linting.pylamaArgs": [
-        "--options=pylama.ini",
-        "--max-line-length=100"
+        "--options=pylama.ini"
     ],
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--load-plugins=pylint_django",
-        "--rcfile=.pylintrc",
-        "--django-settings-module=django_project.settings",
-    ],
+    "python.linting.lintOnSave": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.autoSearchPaths": true,
@@ -126,4 +119,11 @@
     ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
+    "cSpell.enabled": true,
+    "cSpell.language": "en",
+    "cSpell.diagnosticLevel": "Hint",
+    "cSpell.ignorePaths": [
+        ".git/objects",
+        ".vscode",
+    ]
 }

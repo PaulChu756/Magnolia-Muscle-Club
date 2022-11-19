@@ -25,7 +25,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS: list[str] = []
 
     objects = CustomUserManager()
 
@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
         Returns:
         -------
         str
-            The unique identifer of the model, `email`.
+            The unique identifier of the model, `email`.
 
         """
         return self.email
