@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     "fontawesomefree",
     # local apps
-    "users",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
