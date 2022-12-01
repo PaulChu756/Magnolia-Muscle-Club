@@ -94,6 +94,7 @@ django-tests:
 cypress-e2e:
     image: node:18
     stage: test
+    needs: ['django-migrations', 'django-lint']
     before_script:
         - .gitlab/cypress_before_install.sh
     script:
@@ -108,7 +109,7 @@ staging-a:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests']
+    needs: ['django-tests', 'cypress-e2e']
     rules:
         # Only run this job if Team Member A is pushing to a non main branch
         - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_A &&
@@ -125,7 +126,7 @@ staging-b:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests']
+    needs: ['django-tests', 'cypress-e2e']
     rules:
         # Only run this job if Team Member B is pushing to a non main branch
         - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_B &&
@@ -142,7 +143,7 @@ staging-c:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests']
+    needs: ['django-tests', 'cypress-e2e']
     rules:
         # Only run this job if Team Member C is pushing to a non main branch
         - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_C &&
@@ -159,7 +160,7 @@ staging-d:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests']
+    needs: ['django-tests', 'cypress-e2e']
     rules:
         # Only run this job if Team Member D is pushing to a non main branch
         - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_D &&
@@ -176,7 +177,7 @@ production:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests', 'docker-build']
+    needs: ['django-tests', 'cypress-e2e', 'docker-build']
     only:
         # Limit this job to the main branch
         - main
