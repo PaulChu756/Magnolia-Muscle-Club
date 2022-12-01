@@ -8,10 +8,11 @@
         <div class="col-md-4">
             <form method="post">
                 {% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
                 {% bootstrap_form form %}
                 {{ form.media }}
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">{{ button_text }}</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
                 </div>
             </form>
         </div>

@@ -147,6 +147,42 @@ python manage.py test
 | Member C | Last Name | First Name | [heroku_app-c.herokuapp.com](update URL here) |
 | Member D | Last Name | First Name | [heroku_app-d.herokuapp.com](update URL here) |
 
+## Install Cypress
+
+Download and install [NodeJS v18 LTS](https://nodejs.org/en/download/).
+
+If the installation is successful, you will be able to run `npm` command from the CMD, bash, or terminal.
+
+Open another CMD prompt, bash, or terminal, navigate to the project's root directory, and run the command:
+
+```bash
+npm install cypress
+```
+
+This will download the cypress binaries in `node_modules` directory.
+
+It will take several minutes to download and install cypress.
+
+
+## Run Cypress E2E tests
+
+To execute all the cypress tests, run the following command:
+```bash
+npx cypress open
+```
+This command will open a browser window. Select the test as `E2E`.
+
+If there are multiple browsers on your machine, it will prompt to you to choose a browser to run Cypress tests.
+
+Upon choosing a browser to run Cypress tests, click on the `test.cy.js` file to start the tests.
+
+
+### (optional)
+Below command executes all Cypress tests in the terminal (tested in Linux bash):
+```bash
+npx cypress run --headless
+```
+
 ## (Optional) Use Docker Containers for Development
 
 See [DOCKER.md](DOCKER.md) file.
