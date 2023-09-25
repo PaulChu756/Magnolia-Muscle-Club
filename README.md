@@ -2,18 +2,18 @@
 
 **Insert project description here**
 
-**Change the URLs of the deployed app on Heroku**
+**Change the URLs of the deployed app on Render**
 
-The project is deployed on Heroku:
-[https://cmps-453-project-template.herokuapp.com/](https://cmps-453-project-template.herokuapp.com/)
+The project is deployed on Render:
+[https://django-project-template.onrender.com](https://django-project-template.onrender.com)
 
 To develop the Django application, clone this repository and follow the instructions:
 
 ## What's Already Included in the Django Template?
 
 -   User Authentication System:
-    -   [Login](https://cmps-453-project-template.herokuapp.com/accounts/login/)
-    -   [User Registration](https://cmps-453-project-template.herokuapp.com/accounts/signup/)
+    -   [Login](https://django-project-template.onrender.com/accounts/login/)
+    -   [User Registration](https://django-project-template.onrender.com/accounts/signup/)
 
 ## Create Python Virtual Environment
 
@@ -138,14 +138,14 @@ python manage.py test
 
 ## Team Members
 
-**Update the last name, first name, Heroku app name, and URLs in the table below **
+**Update the last name, first name, Render app name, and URLs in the table below **
 
-| Role     | Last Name | First Name | Heroku App                                    |
-| -------- | --------- | ---------- | --------------------------------------------- |
-| Member A | Last Name | First Name | [heroku_app-a.herokuapp.com](update URL here) |
-| Member B | Last Name | First Name | [heroku_app-b.herokuapp.com](update URL here) |
-| Member C | Last Name | First Name | [heroku_app-c.herokuapp.com](update URL here) |
-| Member D | Last Name | First Name | [heroku_app-d.herokuapp.com](update URL here) |
+| Member ID | Role         | Last Name | First Name | Render App           |
+| --------- | ------------ | --------- | ---------- | -------------------- |
+| A         | Team Lead    | Last Name | First Name | [URL Text](FULL URL) |
+| B         | Tech Lead    | Last Name | First Name | [URL Text](FULL URL) |
+| C         | Product Lead | Last Name | First Name | [URL Text](FULL URL) |
+| D         | Flex Lead    | Last Name | First Name | [URL Text](FULL URL) |
 
 ## Install Cypress
 

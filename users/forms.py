@@ -21,4 +21,4 @@ class CustomUserChangeForm(UserChangeForm):
         """Meta class."""
 
         model = CustomUser
-        fields = ("email",)
+        fields = ("first_name", "last_name", "email", "picture")
