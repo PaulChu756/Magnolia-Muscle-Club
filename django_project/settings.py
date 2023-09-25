@@ -155,7 +155,7 @@ AUTH_USER_MODEL = "users.CustomUser"
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-# Settings for secure deployment on Heroku
+# Settings for secure deployment
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000
