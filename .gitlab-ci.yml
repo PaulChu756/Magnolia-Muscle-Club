@@ -54,20 +54,6 @@ django-migrations:
         - python3 manage.py check --database default
         - python3 manage.py check --deploy
 
-# Defines the job in docker build
-docker-build:
-    image: docker:20.10.14
-    stage: build
-    tags:
-        - dind
-    needs: ['django-migrations']
-    services:
-        - docker:20.10.14-dind
-    before_script:
-        - .gitlab/docker_build.sh
-    script:
-        - docker-compose -f docker-compose.dev.yml build
-
 # Defines the job in test
 django-tests:
     image: python:alpine
