@@ -85,7 +85,7 @@ cypress-e2e:
         - source .venv/bin/activate
     script:
         # start the server in the background
-        - python manage.py runserver &
+        - python3 manage.py runserver &
         # run Cypress tests
         - npx cypress run --headless
 
