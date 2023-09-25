@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     picture = models.ImageField(upload_to="profile_pictures/", blank=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS: list[str] = []
+    REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
 
