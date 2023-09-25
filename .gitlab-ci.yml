@@ -2,7 +2,6 @@ stages:
     - lint
     - build
     - test
-    - deploy
 
 variables:
     PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
@@ -25,7 +24,7 @@ cache:
 
 # Defines the job in Static Analysis
 django-lint:
-    image: python:alpine
+    image: python:3.11-alpine
     stage: lint
     tags:
         - python
@@ -38,7 +37,7 @@ django-lint:
 # Defines the job in build
 # Checks if migrations files are missing
 django-migrations:
-    image: python:alpine
+    image: python:3.11-alpine
     stage: build
     tags:
         - python
@@ -55,7 +54,7 @@ django-migrations:
 
 # Defines the job in test
 django-tests:
-    image: python:alpine
+    image: python:3.11-alpine
     stage: test
     tags:
         - python
@@ -88,86 +87,3 @@ cypress-e2e:
         - python3 manage.py runserver &
         # run Cypress tests
         - npx cypress run --headless
-
-# Only Team Member A (GITLAB_USER_LOGIN_A) can trigger this job
-staging-a:
-    image: ruby:latest
-    stage: deploy
-    tags:
-        - ruby
-    needs: ['django-tests', 'cypress-e2e']
-    rules:
-        # Only run this job if Team Member A is pushing to a non main branch
-        - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_A &&
-              $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH &&
-              $CI_PIPELINE_SOURCE != 'merge_request_event'
-    before_script:
-        - .gitlab/dpl_before_script.sh
-    script:
-        - dpl --provider=heroku --app=${HEROKU_APP_STAGING}-a --api-key=$HEROKU_API_KEY_A
-
-# Only Team Member B (GITLAB_USER_LOGIN_B) can trigger this job
-staging-b:
-    image: ruby:latest
-    stage: deploy
-    tags:
-        - ruby
-    needs: ['django-tests', 'cypress-e2e']
-    rules:
-        # Only run this job if Team Member B is pushing to a non main branch
-        - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_B &&
-              $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH &&
-              $CI_PIPELINE_SOURCE != 'merge_request_event'
-    before_script:
-        - .gitlab/dpl_before_script.sh
-    script:
-        - dpl --provider=heroku --app=${HEROKU_APP_STAGING}-b --api-key=$HEROKU_API_KEY_B
-
-# Only Team Member C (GITLAB_USER_LOGIN_C) can trigger this job
-staging-c:
-    image: ruby:latest
-    stage: deploy
-    tags:
-        - ruby
-    needs: ['django-tests', 'cypress-e2e']
-    rules:
-        # Only run this job if Team Member C is pushing to a non main branch
-        - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_C &&
-              $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH &&
-              $CI_PIPELINE_SOURCE != 'merge_request_event'
-    before_script:
-        - .gitlab/dpl_before_script.sh
-    script:
-        - dpl --provider=heroku --app=${HEROKU_APP_STAGING}-c --api-key=$HEROKU_API_KEY_C
-
-# Only Team Member D (GITLAB_USER_LOGIN_D) can trigger this job
-staging-d:
-    image: ruby:latest
-    stage: deploy
-    tags:
-        - ruby
-    needs: ['django-tests', 'cypress-e2e']
-    rules:
-        # Only run this job if Team Member D is pushing to a non main branch
-        - if: $GITLAB_USER_LOGIN == $GITLAB_USER_LOGIN_D &&
-              $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH &&
-              $CI_PIPELINE_SOURCE != 'merge_request_event'
-    before_script:
-        - .gitlab/dpl_before_script.sh
-    script:
-        - dpl --provider=heroku --app=${HEROKU_APP_STAGING}-d --api-key=$HEROKU_API_KEY_D
-
-# This job is triggered when there is a (merge request) commit in the main branch
-production:
-    image: ruby:latest
-    stage: deploy
-    tags:
-        - ruby
-    needs: ['django-tests', 'cypress-e2e']
-    only:
-        # Limit this job to the main branch
-        - main
-    before_script:
-        - .gitlab/dpl_before_script.sh
-    script:
-        - dpl --provider=heroku --app=${HEROKU_APP_STAGING} --api-key=$HEROKU_API_KEY_A
