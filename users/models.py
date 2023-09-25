@@ -24,6 +24,9 @@ class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
 
+    # Uploaded photos are saved in MEDIA_ROOT/profile_pictures/
+    picture = models.ImageField(upload_to="profile_pictures/", blank=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS: list[str] = []
 

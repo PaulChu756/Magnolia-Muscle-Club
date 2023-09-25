@@ -1,3 +1,5 @@
+{% load django_bootstrap5 %}
+{% load static %}
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark justify-content-between">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -35,12 +37,25 @@
                            data-toggle="dropdown"
                            data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            <i class="fa-solid fa-user-shield"></i> {{ user.email }}
+                            {% if user.picture %}
+                                <img src="{{ user.picture.url }}"
+                                     alt="Profile Picture"
+                                     class="rounded-circle img-thumbnail"
+                                     height="30"
+                                     width="30">
+                            {% else %}
+                                <img src="{% static 'img/user-icon.png' %}"
+                                     alt="Profile Picture"
+                                     class="rounded-circle img-thumbnail"
+                                     height="30"
+                                     width="30">
+                            {% endif %}
+                            {{ user.email }}
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{% url 'password_change' %}">
-                                    <i class="fa-solid fa-user-cog"></i> Change password
+                                <a class="dropdown-item" href="{% url 'users:profile_detail' %}">
+                                    <i class="fa-solid fa-user-cog"></i> Profile
                                 </a>
                             </li>
                             <li>
