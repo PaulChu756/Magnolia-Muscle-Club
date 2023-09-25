@@ -5,7 +5,6 @@ stages:
     - deploy
 
 variables:
-    DOCKER_TLS_CERTDIR: '/certs'
     PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
     npm_config_cache: '$CI_PROJECT_DIR/.npm'
     CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
@@ -164,7 +163,7 @@ production:
     stage: deploy
     tags:
         - ruby
-    needs: ['django-tests', 'cypress-e2e', 'docker-build']
+    needs: ['django-tests', 'cypress-e2e']
     only:
         # Limit this job to the main branch
         - main
