@@ -7,7 +7,7 @@ django-bootstrap5
 fontawesomefree
 parameterized
 gunicorn
-psycopg2-binary
+#psycopg2-binary
 soupsieve
 sqlparse
 whitenoise
