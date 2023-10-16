@@ -6,48 +6,66 @@
     Meet our team
 {% endblock title %}
 {% block content %}
-    <div class="justify-content-center">
-        <div class="text-center d-flex">
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the Project Lead's name -->
-                <h4 class="fw-bold">Name</h4>
-                <p class="fw-bold">Project Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the Tech Lead's name -->
-                <h4 class="fw-bold">Name</h4>
-                <p class="fw-bold">Tech Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the Product Lead's name -->
-                <h4 class="fw-bold">Name</h4>
-                <p class="fw-bold">Product Lead</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <i class="fa-regular fa-circle-user fa-8x mb-2"></i>
-                <!-- Replace 'Name' with the QA's name -->
-                <h4 class="fw-bold">Name</h4>
-                <p class="fw-bold">Quality Assurance</p>
-                <!-- Update hrefs with the URLs to email, linked, and gitlab -->
-                <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a> |
-                <a href="#" target="_blank"><i class="fa-brands fa-gitlab"></i></a>
-            </div>
-        </div>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <center><img src="../static/img/paul.jpeg" 
+        class="d-block w-50" 
+        alt="Team Member A"
+        height="auto"
+        width="auto"></center>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Paul Chu</h5>
+          <p>Team Lead</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <center><img src="../static/img/user-icon.png" 
+          class="d-block w-50" 
+          alt="Team Member B"
+          height="auto"
+          width="auto"></center>
+        <div class="carousel-caption d-none d-md-block text-dark">
+          <h5>Mamie Tilbury</h5>
+          <p>Product Lead</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <center><img src="../static/img/user-icon.png" 
+          class="d-block w-50" 
+          alt="Team Member C"
+          height="auto"
+          width="auto"></center>
+        <div class="carousel-caption d-none d-md-block text-dark">
+          <h5>Colin Lanclos</h5>
+          <p>Tech Lead</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <center><img src="../static/img/user-icon.png" 
+          class="d-block w-50" 
+          alt="Team Member D"
+          height="auto"
+          width="auto"></center>
+        <div class="carousel-caption d-none d-md-block text-dark">
+          <h5>Devan Smith</h5>
+          <p>Tech Lead</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 {% endblock content %}
