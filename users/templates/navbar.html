@@ -3,13 +3,19 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark justify-content-between">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <i class="fa-solid fa-house"></i> Product
+            <i class="fa-solid fa-house"></i>
+            <img src="../static/img/MMC-Logo-200-200.png"
+                 width="100px"
+                 height="110px"
+                 alt="">
+            Magnolia Muscle Club
         </a>
         <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault"
+                s
                 aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,6 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'team' %}">
                         <i class="fa-solid fa-people-group"></i> Team
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'wireframe' %}">
+                        <i class="fa-solid fa-pager"></i> Wireframes
                     </a>
                 </li>
             </ul>
