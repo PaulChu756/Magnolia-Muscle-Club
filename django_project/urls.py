@@ -93,6 +93,8 @@ urlpatterns += [
         ),
         name="password_reset_complete",
     ),
+
+    path('', include('mmc.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
