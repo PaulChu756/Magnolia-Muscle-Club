@@ -16,7 +16,7 @@ GENDER_CHOICES = (
 
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default='Free')
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
