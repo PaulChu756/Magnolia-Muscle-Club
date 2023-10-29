@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import UserProfile  # Import the UserProfile model
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'type_of_account', 'first_name', 'last_name']  # Adjust this as needed
+    list_display = ['custom_user', 'type_of_account', 'first_name', 'last_name']  # Adjust this as needed
     actions = ['set_account_type_paid']
 
     def set_account_type_paid(modeladmin, request, queryset):
