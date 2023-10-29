@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+#from django.contrib.auth import get_user_model
+from users.models import CustomUser
 
 # Define the choices first
 TYPE_CHOICES = (
@@ -15,7 +16,7 @@ GENDER_CHOICES = (
 )
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default='Free')
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
