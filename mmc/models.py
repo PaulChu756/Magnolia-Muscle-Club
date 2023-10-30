@@ -63,6 +63,16 @@ class Exercise(models.Model):
     def __str__(self):
         return self.workoutName
 
+
+class WorkOutVideos(models.Model):
+    workOutDay = models.CharField(max_length=200)
+    workOutVideoLink = models.CharField(max_length=200)
+
+class FoodLibrary(models.Model):
+    foodDay = models.CharField(max_length=200)
+    foodChoice = models.CharField(max_length=200)
+
+
 # Create your models here.
 class MealEntry(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
