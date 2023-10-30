@@ -11,8 +11,11 @@ class UserProfileAdmin(admin.ModelAdmin):
         queryset.update(type_of_account='Paid')
     set_account_type_paid.short_description = "Set selected users' account type to Paid"
 
+from .models import MealEntry
+
 # Register your models here.
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(WorkoutSchedule)
 admin.site.register(Day)
 admin.site.register(Exercise)
+admin.site.register(MealEntry)
