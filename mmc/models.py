@@ -73,6 +73,13 @@ class FoodLibrary(models.Model):
     foodChoice = models.CharField(max_length=200)
 
 
+
+class WorkOutVideos(models.Model):
+    workOutDay = models.CharField(max_length=200)
+    workOutVideoLink = models.CharField(max_length=200)
+
+
+
 # Create your models here.
 class MealEntry(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

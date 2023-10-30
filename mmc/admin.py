@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import WorkOutVideos
 from .models import WorkOutVideos, FoodLibrary
 from .models import UserProfile  # Import the UserProfile model
 from .models import Day, Exercise, WorkoutSchedule
@@ -24,3 +25,4 @@ admin.site.register(MealEntry)
 admin.site.register(Notification)
 admin.site.register(WorkOutVideos)
 admin.site.register(FoodLibrary)
+admin.site.register(WorkOutVideos)
