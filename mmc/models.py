@@ -28,9 +28,6 @@ class UserProfile(models.Model):
     height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     phone = models.PositiveIntegerField(blank=True, null=True)
 
-    # def __str__(self):
-    #     return self.user.username
-
 @receiver(post_save, sender=CustomUser)
 def create_profile(sender, instance, created, **kwargs):
     if sender and created:
