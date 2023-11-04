@@ -1,18 +1,17 @@
 from django.contrib import admin
 
-from .models import UserProfile  # Import the UserProfile model
-from .models import WorkOutVideos
-
 from .models import (
     Day,
     Exercise,
+    FoodLibrary,
     MealEntry,
     Notification,
     PersonalBest,
+    UserProfile,
     Weight,
     Workout,
     WorkoutSchedule,
-    FoodLibrary,
+    WorkOutVideos,
 )
 
 
