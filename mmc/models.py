@@ -1,42 +1,9 @@
+"""MMC Models."""
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from users.models import CustomUser
-
-
-# Define the Workout model with a dropdown select menu
-class Workout(models.Model):
-    WORKOUT_CHOICES = [
-        ("Cardio", "Cardio"),
-        ("Strength Training", "Strength Training"),
-        ("Yoga", "Yoga"),
-        # Add more workout types as needed
-    ]
-    name = models.CharField(max_length=100)
-    workout_type = models.CharField(max_length=50, choices=WORKOUT_CHOICES)
-
-    def __str__(self):
-        return self.name
-
-
-# Define the Weight model
-class Weight(models.Model):
-    value = models.PositiveIntegerField()
-    date = models.DateField()
-
-    def __str__(self):
-        return f"Weight: {self.value} lbs ({self.date})"
-
-
-# Define the Personal Best model
-class PersonalBest(models.Model):
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
-    value = models.FloatField()
-
-    def __str__(self):
-        return f"Personal Best for {self.workout}"
-
 
 # Define the choices first
 TYPE_CHOICES = (
@@ -51,8 +18,29 @@ GENDER_CHOICES = (
     ("Other", "Other"),
 )
 
+FITNESS_GROUP_CHOICES = (
+    ("Group A", "Group A"),
+    ("Group B", "Group B"),
+    ("Group C", "Group C"),
+)
+
+MEAL_CHOICES = (
+    ("breakfast", "Breakfast"),
+    ("lunch", "Lunch"),
+    ("dinner", "Dinner"),
+    ("snacks", "Snacks"),
+)
+
+WORKOUT_CHOICES = (
+    ("Cardio", "Cardio"),
+    ("Strength Training", "Strength Training"),
+    ("Yoga", "Yoga"),
+)
+
 
 class UserProfile(models.Model):
+    """User Profile model."""
+
     custom_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default="Free")
     first_name = models.CharField(max_length=30)
@@ -64,26 +52,51 @@ class UserProfile(models.Model):
     phone = models.PositiveIntegerField(blank=True, null=True)
 
 
-@receiver(post_save, sender=CustomUser)
-def create_profile(sender, instance, created, **kwargs):
-    if sender and created:
-        UserProfile.objects.create(custom_user=instance)
+# Define the Workout model with a dropdown select menu
+class Workout(models.Model):
+    """Workout model."""
+
+    name = models.CharField(max_length=100)
+    workout_type = models.CharField(max_length=50, choices=WORKOUT_CHOICES)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
-post_save.connect(create_profile, sender=CustomUser)
-# Create your models here.
+class Weight(models.Model):
+    """Weight model."""
+
+    value = models.PositiveIntegerField()
+    date = models.DateField()
+
+    def __str__(self):
+        return f"Weight: {self.value} lbs ({self.date})"
+
+
+class PersonalBest(models.Model):
+    """The Personal Best model."""
+
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+    value = models.FloatField()
+
+    def __str__(self):
+        return f"Personal Best for {self.workout}"
 
 
 class WorkoutSchedule(models.Model):
+    """Workout schedule model."""
+
     workoutName = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
 
     def __str__(self):
-        return self.workoutName
+        return f"{self.workoutName}"
 
 
 class Day(models.Model):
+    """Day model."""
+
     day_of_week = models.CharField(max_length=10)
     schedule = models.ForeignKey(WorkoutSchedule, on_delete=models.CASCADE)
 
@@ -92,42 +105,35 @@ class Day(models.Model):
 
 
 class Exercise(models.Model):
+    """Exercise model."""
+
     workoutName = models.CharField(max_length=255)
     description = models.TextField()
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.workoutName
+        return f"{self.workoutName}"
 
 
 class WorkOutVideos(models.Model):
+    """Work out videos model."""
+
     workOutDay = models.CharField(max_length=200)
     workOutVideoLink = models.CharField(max_length=200)
 
+
 class FoodLibrary(models.Model):
+    """Food library model."""
+
     foodDay = models.CharField(max_length=200)
     foodChoice = models.CharField(max_length=200)
 
 
-
-class WorkOutVideos(models.Model):
-    workOutDay = models.CharField(max_length=200)
-    workOutVideoLink = models.CharField(max_length=200)
-
-
-
-# Create your models here.
 class MealEntry(models.Model):
+    """Meal Entry model."""
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    meal_type = models.CharField(
-        max_length=20,
-        choices=[
-            ("breakfast", "Breakfast"),
-            ("lunch", "Lunch"),
-            ("dinner", "Dinner"),
-            ("snacks", "Snacks"),
-        ],
-    )
+    meal_type = models.CharField(max_length=20, choices=MEAL_CHOICES)
     food_item = models.CharField(max_length=100)
     calories_consumed = models.PositiveIntegerField()
     date = models.DateField(auto_now_add=True)
@@ -136,16 +142,9 @@ class MealEntry(models.Model):
         return f"{self.user.username}'s {self.meal_type} entry"
 
 
-# Define the choices for the fitness group dropdown
-FITNESS_GROUP_CHOICES = (
-    ("Group A", "Group A"),
-    ("Group B", "Group B"),
-    ("Group C", "Group C"),
-    # Add more fitness group choices as needed
-)
-
-
 class Notification(models.Model):
+    """Notification model."""
+
     fitness_group = models.CharField(max_length=20, choices=FITNESS_GROUP_CHOICES)
     message = models.TextField()
     sent_by = models.ForeignKey(
@@ -159,4 +158,16 @@ class Notification(models.Model):
         return f"Notification for {self.fitness_group}"
 
     class Meta:
+        """Meta class."""
+
         ordering = ["-timestamp"]
+
+
+@receiver(post_save, sender=CustomUser)
+def create_profile(sender, instance, created, **kwargs):
+    """Create UserProfile object when a new CustomUser signs up."""
+    if sender and created:
+        UserProfile.objects.create(custom_user=instance)
+
+
+post_save.connect(create_profile, sender=CustomUser)
