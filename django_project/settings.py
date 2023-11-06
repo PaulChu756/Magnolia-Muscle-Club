@@ -46,7 +46,10 @@ INSTALLED_APPS = [
     "fontawesomefree",
     # local apps
     "users.apps.UsersConfig",
-    "mmc.apps.MmcConfig",
+    "meal.apps.MealConfig",
+    "workout.apps.WorkoutConfig",
+    "user_profile.apps.UserProfileConfig",
+    "notification.apps.NotificationConfig",
 ]
 
 MIDDLEWARE = [
@@ -65,7 +68,7 @@ ROOT_URLCONF = "django_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Include project-level templates directory
+        "DIRS": [os.path.join(BASE_DIR, "templates")],  # Include project-level templates directory
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
