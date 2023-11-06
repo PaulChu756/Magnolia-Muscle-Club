@@ -1,7 +1,6 @@
 {% extends "base_generic.html" %}
 {% load django_bootstrap5 %}
 {% block title %}
-<br><br>
     {{ title_text }}
 {% endblock title %}
 {% block content %}
@@ -10,11 +9,8 @@
             <form method="post">
                 {% csrf_token %}
                 <p>Are you sure you want to delete "{{ object }}"?</p>
-                {% bootstrap_form form %}
-                {{ form.media }}
-                <div class="text-center">
-                    <button type="submit" class="btn btn-danger">Confirm</button>
-                </div>
+                {{ form }}
+                <input type="submit" value="Confirm" class="btn btn-danger">
             </form>
         </div>
     </div>

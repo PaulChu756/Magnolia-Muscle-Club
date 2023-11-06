@@ -110,6 +110,7 @@ class NotificationCreateView(generic.CreateView):
     extra_context = {"title_text": "Add Notification", "button_text": "Add"}
 
 
+
 # Refactored List Views with "generic" parameter
 # ListView for Workout model
 class WorkoutListView(generic.ListView):
@@ -182,202 +183,204 @@ class NotificationListView(generic.ListView):
 # DetailView for Workout model
 class WorkoutDetailView(DetailView):
     model = Workout
-    template_name = 'workout_detail.html'  # Create a template for the detail view
-    context_object_name = 'workout'  # The variable name to access the object in the template
 
 class WeightDetailView(DetailView):
     model = Weight
-    template_name = 'weight_detail.html'
-    context_object_name = 'weight'
 
 class PersonalBestDetailView(DetailView):
     model = PersonalBest
-    template_name = 'personalbest_detail.html'
-    context_object_name = 'personalbest'
 
 class UserProfileDetailView(DetailView):
     model = UserProfile
-    template_name = 'userprofile_detail.html'
-    context_object_name = 'userprofile'
 
 class WorkoutScheduleDetailView(DetailView):
     model = WorkoutSchedule
-    template_name = 'workoutschedule_detail.html'
-    context_object_name = 'workoutschedule'
 
 class DayDetailView(DetailView):
     model = Day
-    template_name = 'day_detail.html'
-    context_object_name = 'day'
 
 class ExerciseDetailView(DetailView):
     model = Exercise
-    template_name = 'exercise_detail.html'
-    context_object_name = 'exercise'
 
 class WorkOutVideosDetailView(DetailView):
     model = WorkOutVideos
-    template_name = 'workoutvideos_detail.html'
-    context_object_name = 'workoutvideo'
 
 class FoodLibraryDetailView(DetailView):
     model = FoodLibrary
-    template_name = 'foodlibrary_detail.html'
-    context_object_name = 'foodlibrary'
 
 class MealEntryDetailView(DetailView):
     model = MealEntry
-    template_name = 'mealentry_detail.html'
-    context_object_name = 'mealentry'
 
 class NotificationDetailView(DetailView):
     model = Notification
-    template_name = 'notification_detail.html'
-    context_object_name = 'notification'
 
 
 
 # UpdateView for the Workout model
 class WorkoutUpdateView(generic.UpdateView):
     model = Workout
-    template_name = 'workout_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:workout-list')
+    template_name = 'generic_workout_form.html'
+    extra_context = {"title_text": "Edit Workout", "button_text": "Update"}
 
 # UpdateView for the Weight model
 class WeightUpdateView(generic.UpdateView):
     model = Weight
-    template_name = 'weight_form.html'
     fields = '__all__'
+    template_name = 'weight_form.html'
     success_url = reverse_lazy('mmc:weight-list')
+    extra_context = {"title_text": "Edit Weight", "button_text": "Update"}
 
 # UpdateView for the PersonalBest model
 class PersonalBestUpdateView(generic.UpdateView):
     model = PersonalBest
-    template_name = 'personalbest_form.html'
     fields = '__all__'
+    template_name = 'personalbest_form.html'
     success_url = reverse_lazy('mmc:personalbest-list')
+    extra_context = {"title_text": "Edit Personal Best", "button_text": "Update"}
 
 # UpdateView for the UserProfile model
 class UserProfileUpdateView(generic.UpdateView):
     model = UserProfile
-    template_name = 'userprofile_form.html'
     fields = '__all__'
+    template_name = 'userprofile_form.html'
     success_url = reverse_lazy('mmc:userprofile-list')
+    extra_context = {"title_text": "Edit User Profile", "button_text": "Update"}
 
 # UpdateView for the WorkoutSchedule model
 class WorkoutScheduleUpdateView(generic.UpdateView):
     model = WorkoutSchedule
-    template_name = 'workoutschedule_form.html'
     fields = '__all__'
+    template_name = 'workoutschedule_form.html'
     success_url = reverse_lazy('mmc:workoutschedule-list')
+    extra_context = {"title_text": "Edit Workout Schedule", "button_text": "Update"}
 
 # UpdateView for the Day model
 class DayUpdateView(generic.UpdateView):
     model = Day
-    template_name = 'day_form.html'
     fields = '__all__'
+    template_name = 'day_form.html'
     success_url = reverse_lazy('mmc:day-list')
+    extra_context = {"title_text": "Edit Day", "button_text": "Update"}
 
 # UpdateView for the Exercise model
 class ExerciseUpdateView(generic.UpdateView):
     model = Exercise
-    template_name = 'exercise_form.html'
     fields = '__all__'
+    template_name = 'exercise_form.html'
     success_url = reverse_lazy('mmc:exercise-list')
+    extra_context = {"title_text": "Edit Exercise", "button_text": "Update"}
 
 # UpdateView for the WorkOutVideos model
 class WorkOutVideosUpdateView(generic.UpdateView):
     model = WorkOutVideos
-    template_name = 'workoutvideos_form.html'
     fields = '__all__'
+    template_name = 'workoutvideos_form.html'
     success_url = reverse_lazy('mmc:workoutvideos-list')
+    extra_context = {"title_text": "Edit Workout Videos", "button_text": "Update"}
 
 # UpdateView for the FoodLibrary model
 class FoodLibraryUpdateView(generic.UpdateView):
     model = FoodLibrary
-    template_name = 'foodlibrary_form.html'
     fields = '__all__'
+    template_name = 'foodlibrary_form.html'
     success_url = reverse_lazy('mmc:foodlibrary-list')
+    extra_context = {"title_text": "Edit Food Library", "button_text": "Update"}
 
 # UpdateView for the MealEntry model
 class MealEntryUpdateView(generic.UpdateView):
     model = MealEntry
-    template_name = 'mealentry_form.html'
     fields = '__all__'
+    template_name = 'mealentry_form.html'
     success_url = reverse_lazy('mmc:mealentry-list')
+    extra_context = {"title_text": "Edit Meal Entry", "button_text": "Update"}
 
 # UpdateView for the Notification model
 class NotificationUpdateView(generic.UpdateView):
     model = Notification
-    template_name = 'notification_form.html'
     fields = '__all__'
+    template_name = 'notification_form.html'
     success_url = reverse_lazy('mmc:notification-list')
+    extra_context = {"title_text": "Edit Notification", "button_text": "Update"}
+
+
 
 
 
 # DeleteView for the Workout model
 class WorkoutDeleteView(DeleteView):
     model = Workout
-    template_name = 'workout_confirm_delete.html'
     success_url = reverse_lazy('mmc:workout-list')
+    template_name = 'generic_confirm_delete.html'
+    extra_content = {"title_text": "Delete Workout"}
 
 # DeleteView for the Weight model
 class WeightDeleteView(DeleteView):
     model = Weight
-    template_name = 'weight_confirm_delete.html'
     success_url = reverse_lazy('mmc:weight-list')
+    template_name = 'weight_confirm_delete.html'
+    extra_content = {"title_text": "Delete Weight"}
 
 # DeleteView for the PersonalBest model
 class PersonalBestDeleteView(DeleteView):
     model = PersonalBest
-    template_name = 'personalbest_confirm_delete.html'
     success_url = reverse_lazy('mmc:personalbest-list')
+    template_name = 'personalbest_confirm_delete.html'
+    extra_content = {"title_text": "Delete Personal Best"}
 
 # DeleteView for the UserProfile model
 class UserProfileDeleteView(DeleteView):
     model = UserProfile
-    template_name = 'userprofile_confirm_delete.html'
     success_url = reverse_lazy('mmc:userprofile-list')
+    template_name = 'userprofile_confirm_delete.html'
+    extra_content = {"title_text": "Delete User Profile"}
 
 # DeleteView for the WorkoutSchedule model
 class WorkoutScheduleDeleteView(DeleteView):
     model = WorkoutSchedule
-    template_name = 'workoutschedule_confirm_delete.html'
     success_url = reverse_lazy('mmc:workoutschedule-list')
+    template_name = 'workoutschedule_confirm_delete.html'
+    extra_content = {"title_text": "Delete Workout Schedule"}
 
 # DeleteView for the Day model
 class DayDeleteView(DeleteView):
     model = Day
-    template_name = 'day_confirm_delete.html'
     success_url = reverse_lazy('mmc:day-list')
+    template_name = 'day_confirm_delete.html'
+    extra_content = {"title_text": "Delete Day"}
 
 # DeleteView for the Exercise model
 class ExerciseDeleteView(DeleteView):
     model = Exercise
-    template_name = 'exercise_confirm_delete.html'
     success_url = reverse_lazy('mmc:exercise-list')
+    template_name = 'exercise_confirm_delete.html'
+    extra_content = {"title_text": "Delete Exercise"}
 
 # DeleteView for the WorkOutVideos model
 class WorkOutVideosDeleteView(DeleteView):
     model = WorkOutVideos
-    template_name = 'workoutvideos_confirm_delete.html'
     success_url = reverse_lazy('mmc:workoutvideos-list')
+    template_name = 'workoutvideos_confirm_delete.html'
+    extra_content = {"title_text": "Delete Workout Videos"}
 
 # DeleteView for the FoodLibrary model
 class FoodLibraryDeleteView(DeleteView):
     model = FoodLibrary
-    template_name = 'foodlibrary_confirm_delete.html'
     success_url = reverse_lazy('mmc:foodlibrary-list')
+    template_name = 'foodlibrary_confirm_delete.html'
+    extra_content = {"title_text": "Delete Food Library"}
 
 # DeleteView for the MealEntry model
 class MealEntryDeleteView(DeleteView):
     model = MealEntry
-    template_name = 'mealentry_confirm_delete.html'
     success_url = reverse_lazy('mmc:mealentry-list')
+    template_name = 'mealentry_confirm_delete.html'
+    extra_content = {"title_text": "Delete Meal Entry"}
 
 # DeleteView for the Notification model
 class NotificationDeleteView(DeleteView):
     model = Notification
-    template_name = 'notification_confirm_delete.html'
     success_url = reverse_lazy('mmc:notification-list')
+    template_name = 'notification_confirm_delete.html'
+    extra_content = {"title_text": "Delete Notification"}
