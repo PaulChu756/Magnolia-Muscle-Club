@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <br>
+    <br>
+    Notification List
+{% endblock title %}
+{% block content %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <h2>Notification List</h2>
+            <ul>
+                {% for notification in notifications %}
+                    <li>
+                        <strong>Fitness Group:</strong>{{ notification.fitness_group }}
+                        <br>
+                        <strong>Message:</strong>{{ notification.message }}
+                        <br>
+                        <strong>Sent By:</strong>{{ notification.sent_by.username }}
+                        <br>
+                        <strong>Recipients:</strong>
+                        <ul>
+                            {% for recipient in notification.recipients.all %}<li>{{ recipient.username }}</li>{% endfor %}
+                        </ul>
+                        <br>
+                        <strong>Timestamp:</strong>{{ notification.timestamp|date:"d-m-Y H:i:s" }}
+                    </li>
+                    <hr>
+                {% empty %}
+                    <p>No notifications available.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="text-center">
+                <a class="btn btn-warning"
+                   href="{% url 'notification:notification-create' %}">
+                    <i class="fa-solid fa-plus"></i> Create Notification
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
