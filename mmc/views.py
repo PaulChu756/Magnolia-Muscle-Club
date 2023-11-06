@@ -182,65 +182,43 @@ class NotificationListView(generic.ListView):
 # DetailView for Workout model
 class WorkoutDetailView(DetailView):
     model = Workout
-    template_name = 'workout_detail.html'  # Create a template for the detail view
-    context_object_name = 'workout'  # The variable name to access the object in the template
 
 class WeightDetailView(DetailView):
     model = Weight
-    template_name = 'weight_detail.html'
-    context_object_name = 'weight'
 
 class PersonalBestDetailView(DetailView):
     model = PersonalBest
-    template_name = 'personalbest_detail.html'
-    context_object_name = 'personalbest'
 
 class UserProfileDetailView(DetailView):
     model = UserProfile
-    template_name = 'userprofile_detail.html'
-    context_object_name = 'userprofile'
 
 class WorkoutScheduleDetailView(DetailView):
     model = WorkoutSchedule
-    template_name = 'workoutschedule_detail.html'
-    context_object_name = 'workoutschedule'
 
 class DayDetailView(DetailView):
     model = Day
-    template_name = 'day_detail.html'
-    context_object_name = 'day'
 
 class ExerciseDetailView(DetailView):
     model = Exercise
-    template_name = 'exercise_detail.html'
-    context_object_name = 'exercise'
 
 class WorkOutVideosDetailView(DetailView):
     model = WorkOutVideos
-    template_name = 'workoutvideos_detail.html'
-    context_object_name = 'workoutvideo'
 
 class FoodLibraryDetailView(DetailView):
     model = FoodLibrary
-    template_name = 'foodlibrary_detail.html'
-    context_object_name = 'foodlibrary'
 
 class MealEntryDetailView(DetailView):
     model = MealEntry
-    template_name = 'mealentry_detail.html'
-    context_object_name = 'mealentry'
 
 class NotificationDetailView(DetailView):
     model = Notification
-    template_name = 'notification_detail.html'
-    context_object_name = 'notification'
 
 
 
 # UpdateView for the Workout model
 class WorkoutUpdateView(generic.UpdateView):
     model = Workout
-    template_name = 'workout_form.html'
+    template_name = 'generic_workout_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:workout-list')
 
