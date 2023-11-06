@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout List</title>
+</head>
+<body>
+    <h1>Workout List</h1>
+
+    <ul>
+        {% for workout in workouts %}
+            <li><a href="{% url 'mmc:workout-detail' workout.pk %}">{{ workout.name }}</a></li>
+        {% empty %}
+            <li>No workouts available.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'mmc:workout-create' %}">Create a New Workout</a>
+</body>
+</html>

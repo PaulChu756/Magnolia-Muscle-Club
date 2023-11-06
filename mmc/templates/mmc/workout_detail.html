@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Detail</title>
+</head>
+<body>
+    <h1>Workout Detail</h1>
+
+    <h2>{{ workout.name }}</h2>
+    <p>Workout Type: {{ workout.get_workout_type_display }}</p>
+
+    <a href="{% url 'mmc:workout-list' %}">Back to Workout List</a>
+</body>
+</html>
