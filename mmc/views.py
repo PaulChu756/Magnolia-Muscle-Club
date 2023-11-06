@@ -26,7 +26,7 @@ class WorkoutCreateView(generic.CreateView):
     model = Workout
     fields = '__all__'
     success_url = reverse_lazy('mmc:workout-list')
-    template_name = 'generic_workout_form.html'
+    template_name = 'generic_create_update_form.html'
     extra_context = {"title_text": "Add Workout", "button_text": "Add"}
 
 # CreateView for the Weight model
@@ -34,7 +34,7 @@ class WeightCreateView(generic.CreateView):
     model = Weight
     fields = '__all__'
     success_url = reverse_lazy('mmc:weight-list')
-    template_name = 'generic_weight_form.html'
+    template_name = 'generic_create_update_form.html'
     extra_context = {"title_text": "Add Weight", "button_text": "Add"}
 
 # CreateView for the PersonalBest model
@@ -228,7 +228,7 @@ class WorkoutUpdateView(generic.UpdateView):
 class WeightUpdateView(generic.UpdateView):
     model = Weight
     fields = '__all__'
-    template_name = 'weight_form.html'
+    template_name = 'generic_create_update_form.html'
     success_url = reverse_lazy('mmc:weight-list')
     extra_context = {"title_text": "Edit Weight", "button_text": "Update"}
 
@@ -319,7 +319,7 @@ class WorkoutDeleteView(DeleteView):
 class WeightDeleteView(DeleteView):
     model = Weight
     success_url = reverse_lazy('mmc:weight-list')
-    template_name = 'weight_confirm_delete.html'
+    template_name = 'generic_confirm_delete.html'
     extra_content = {"title_text": "Delete Weight"}
 
 # DeleteView for the PersonalBest model

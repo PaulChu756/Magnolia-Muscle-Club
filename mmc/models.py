@@ -66,6 +66,7 @@ class Workout(models.Model):
 class Weight(models.Model):
     """Weight model."""
 
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add user reference
     value = models.PositiveIntegerField()
     date = models.DateField()
 
