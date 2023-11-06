@@ -110,69 +110,69 @@ class NotificationCreateView(generic.CreateView):
     extra_context = {"title_text": "Add Notification", "button_text": "Add"}
 
 
-
+# Refactored List Views with "generic" parameter
 # ListView for Workout model
-class WorkoutListView(ListView):
+class WorkoutListView(generic.ListView):
     model = Workout
     template_name = 'workout_list.html'  # Create a template for the list view
     context_object_name = 'workouts'  # The variable name to access objects in the template
 
 # ListView and DetailView for Weight model
-class WeightListView(ListView):
+class WeightListView(generic.ListView):
     model = Weight
     template_name = 'weight_list.html'
     context_object_name = 'weights'
 
 # ListView and DetailView for PersonalBest model
-class PersonalBestListView(ListView):
+class PersonalBestListView(generic.ListView):
     model = PersonalBest
     template_name = 'personalbest_list.html'
     context_object_name = 'personalbests'
 
 # ListView and DetailView for UserProfile model
-class UserProfileListView(ListView):
+class UserProfileListView(generic.ListView):
     model = UserProfile
     template_name = 'userprofile_list.html'
     context_object_name = 'userprofiles'
 
 # ListView and DetailView for WorkoutSchedule model
-class WorkoutScheduleListView(ListView):
+class WorkoutScheduleListView(generic.ListView):
     model = WorkoutSchedule
     template_name = 'workoutschedule_list.html'
     context_object_name = 'workoutschedules'
 
 # ListView and DetailView for Day model
-class DayListView(ListView):
+class DayListView(generic.ListView):
     model = Day
     template_name = 'day_list.html'
     context_object_name = 'days'
 
 # ListView and DetailView for Exercise model
-class ExerciseListView(ListView):
+class ExerciseListView(generic.ListView):
     model = Exercise
     template_name = 'exercise_list.html'
     context_object_name = 'exercises'
 
 # ListView and DetailView for WorkOutVideos model
-class WorkOutVideosListView(ListView):
+class WorkOutVideosListView(generic.ListView):
     model = WorkOutVideos
     template_name = 'workoutvideos_list.html'
     context_object_name = 'workoutvideos'
 
 # ListView and DetailView for FoodLibrary model
-class FoodLibraryListView(ListView):
+class FoodLibraryListView(generic.ListView):
     model = FoodLibrary
     template_name = 'foodlibrary_list.html'
     context_object_name = 'foodlibraries'
 
 # ListView and DetailView for MealEntry model
-class MealEntryListView(ListView):
+class MealEntryListView(generic.ListView):
     model = MealEntry
     template_name = 'mealentry_list.html'
     context_object_name = 'mealentries'
 
 # ListView and DetailView for Notification model
-class NotificationListView(ListView):
+class NotificationListView(generic.ListView):
     model = Notification
     template_name = 'notification_list.html'
     context_object_name = 'notifications'
