@@ -11,9 +11,9 @@
             <ul>
                 {% for weight in weights %}
                     <li>
-                        <strong>Date:</strong>{{ weight.date|date:"d-m-Y" }}
+                        <strong>Date: </strong>{{ weight.date|date:"d-m-Y" }}
                         <br>
-                        <strong>Weight:</strong>{{ weight.value }} lbs
+                        <strong>Weight: </strong>{{ weight.value }} lbs
                         <br>
                         <a href="{% url 'workout:weight-detail' weight.pk %}">View Details</a>
                     </li>

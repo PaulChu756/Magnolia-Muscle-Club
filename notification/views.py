@@ -16,7 +16,7 @@ class NotificationCreateView(generic.CreateView):
 # ListView and DetailView for Notification model
 class NotificationListView(generic.ListView):
     model = models.Notification
-    template_name = "notifcation_list.html"
+    template_name = "notification_list.html"
     context_object_name = "notifications"
 
 

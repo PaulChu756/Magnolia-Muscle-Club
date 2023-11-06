@@ -68,6 +68,8 @@ class WorkOutVideosCreateView(generic.CreateView):
     extra_context = {"title_text": "Add Workout Videos", "button_text": "Add"}
 
 
+
+
 # Refactored List Views with "generic" parameter
 # ListView for Workout model
 class WorkoutListView(generic.ListView):
@@ -118,6 +120,8 @@ class WorkOutVideosListView(generic.ListView):
     context_object_name = "workoutvideos"
 
 
+
+
 class WorkoutDetailView(generic.DetailView):
     model = models.Workout
 
@@ -154,6 +158,8 @@ class WorkoutUpdateView(generic.UpdateView):
     extra_context = {"title_text": "Edit Workout", "button_text": "Update"}
 
 
+
+
 # UpdateView for the Weight model
 class WeightUpdateView(generic.UpdateView):
     model = models.Weight
@@ -171,6 +177,13 @@ class WorkoutScheduleUpdateView(generic.UpdateView):
     success_url = reverse_lazy("workout:workoutschedule-list")
     extra_context = {"title_text": "Edit Workout Schedule", "button_text": "Update"}
 
+# UpdateView for the PersonalBest model
+class PersonalBestUpdateView(generic.UpdateView):
+    model = models.PersonalBest
+    fields = "__all__"
+    template_name = "personalbest_form.html"
+    success_url = reverse_lazy("mmc:personalbest-list")
+    extra_context = {"title_text": "Edit Personal Best", "button_text": "Update"}
 
 # UpdateView for the Day model
 class DayUpdateView(generic.UpdateView):
@@ -199,6 +212,9 @@ class WorkOutVideosUpdateView(generic.UpdateView):
     extra_context = {"title_text": "Edit Workout Videos", "button_text": "Update"}
 
 
+
+
+
 # DeleteView for the Workout model
 class WorkoutDeleteView(generic.DeleteView):
     model = models.Workout
@@ -221,3 +237,31 @@ class PersonalBestDeleteView(generic.DeleteView):
     success_url = reverse_lazy("workout:personalbest-list")
     template_name = "personalbest_confirm_delete.html"
     extra_content = {"title_text": "Delete Personal Best"}
+
+# DeleteView for the WorkoutSchedule model
+class WorkoutScheduleDeleteView(generic.DeleteView):
+    model = models.WorkoutSchedule
+    success_url = reverse_lazy("mmc:workoutschedule-list")
+    template_name = "workoutschedule_confirm_delete.html"
+    extra_content = {"title_text": "Delete Workout Schedule"}
+
+# DeleteView for the Day model
+class DayDeleteView(generic.DeleteView):
+    model = models.Day
+    success_url = reverse_lazy("mmc:day-list")
+    template_name = "day_confirm_delete.html"
+    extra_content = {"title_text": "Delete Day"}
+
+# DeleteView for the Exercise model
+class ExerciseDeleteView(generic.DeleteView):
+    model = models.Exercise
+    success_url = reverse_lazy("mmc:exercise-list")
+    template_name = "exercise_confirm_delete.html"
+    extra_content = {"title_text": "Delete Exercise"}
+
+# DeleteView for the WorkOutVideos model
+class WorkOutVideosDeleteView(generic.DeleteView):
+    model = models.WorkOutVideos
+    success_url = reverse_lazy("mmc:workoutvideos-list")
+    template_name = "workoutvideos_confirm_delete.html"
+    extra_content = {"title_text": "Delete Workout Videos"}
