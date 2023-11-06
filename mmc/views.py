@@ -19,101 +19,95 @@ from .models import (
     Notification,
 )
 
-#from .forms import UserProfileForm
-
-# def update_profile(request):
-#     if request.method == 'POST':
-#         form = UserProfileForm(request.POST, instance=request.user.userprofile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')  # Redirect to the user's profile page after updating
-#     else:
-#         form = UserProfileForm(instance=request.user.userprofile)
-#     return render(request, 'update_user_profile.html', {'form': form})
-
-# def redirectTest(request):
-#     print("testDMAWODPAWDJAIPODNASOPDHJNWA")
-#     return redirect("http://stackoverflow.com/")
-
-
 #May need extra_content field
 
 # CreateView for the Workout model
 class WorkoutCreateView(generic.CreateView):
     model = Workout
-    template_name = 'workout_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:workout-list')
+    template_name = 'generic_workout_form.html'
+    extra_context = {"title_text": "Add Workout", "button_text": "Add"}
 
 # CreateView for the Weight model
 class WeightCreateView(generic.CreateView):
     model = Weight
-    template_name = 'weight_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:weight-list')
+    template_name = 'generic_weight_form.html'
+    extra_context = {"title_text": "Add Weight", "button_text": "Add"}
 
 # CreateView for the PersonalBest model
 class PersonalBestCreateView(generic.CreateView):
     model = PersonalBest
-    template_name = 'personalbest_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:personalbest-list')
+    template_name = 'generic_personalbest_form.html'
+    extra_context = {"title_text": "Add Personal Best", "button_text": "Add"}
 
 # CreateView for the UserProfile model
 class UserProfileCreateView(generic.CreateView):
     model = UserProfile
-    template_name = 'userprofile_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:userprofile-list')
+    template_name = 'generic_userprofile_form.html'
+    extra_context = {"title_text": "Add User Profile", "button_text": "Add"}
 
 # CreateView for the WorkoutSchedule model
 class WorkoutScheduleCreateView(generic.CreateView):
     model = WorkoutSchedule
-    template_name = 'workoutschedule_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:workoutschedule-list')
+    template_name = 'generic_workoutschedule_form.html'
+    extra_context = {"title_text": "Add Workout Schedule", "button_text": "Add"}
 
 # CreateView for the Day model
 class DayCreateView(generic.CreateView):
     model = Day
-    template_name = 'day_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:day-list')
+    template_name = 'generic_day_form.html'
+    extra_context = {"title_text": "Add Day", "button_text": "Add"}
 
 # CreateView for the Exercise model
 class ExerciseCreateView(generic.CreateView):
     model = Exercise
-    template_name = 'exercise_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:exercise-list')
+    template_name = 'generic_exercise_form.html'
+    extra_context = {"title_text": "Add Exercise", "button_text": "Add"}
 
 # CreateView for the WorkOutVideos model
 class WorkOutVideosCreateView(generic.CreateView):
     model = WorkOutVideos
-    template_name = 'workoutvideos_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:workoutvideos-list')
+    template_name = 'generic_workoutvideos_form.html'
+    extra_context = {"title_text": "Add Workout Videos", "button_text": "Add"}
 
 # CreateView for the FoodLibrary model
 class FoodLibraryCreateView(generic.CreateView):
     model = FoodLibrary
-    template_name = 'foodlibrary_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:foodlibrary-list')
+    template_name = 'generic_foodlibrary_form.html'
+    extra_context = {"title_text": "Add Food Library", "button_text": "Add"}
 
 # CreateView for the MealEntry model
 class MealEntryCreateView(generic.CreateView):
     model = MealEntry
-    template_name = 'mealentry_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:mealentry-list')
+    template_name = 'generic_mealentry_form.html'
+    extra_context = {"title_text": "Add Meal Entry", "button_text": "Add"}
 
 # CreateView for the Notification model
 class NotificationCreateView(generic.CreateView):
     model = Notification
-    template_name = 'notification_form.html'
     fields = '__all__'
     success_url = reverse_lazy('mmc:notification-list')
+    template_name = 'generic_notification_form.html'
+    extra_context = {"title_text": "Add Notification", "button_text": "Add"}
 
 
 

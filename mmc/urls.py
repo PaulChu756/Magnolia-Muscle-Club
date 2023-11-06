@@ -1,6 +1,5 @@
 from django.urls import path
-from . import views
-#from mmc import views
+from mmc import views
 
 app_name = "mmc"
 
