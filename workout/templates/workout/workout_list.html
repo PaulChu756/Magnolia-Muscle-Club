@@ -9,7 +9,7 @@
                 <ol>
                     {% for workout in object_list %}
                         <li>
-                            <a href="{% url 'mmc:workout-detail' workout.id %}">{{ workout.name }}</a>
+                            <a href="{% url 'workout:workout-detail' workout.id %}">{{ workout.name }}</a>
                         </li>
                     {% endfor %}
                 </ol>
@@ -21,7 +21,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="text-center">
-                <a class="btn btn-warning" href="{% url 'mmc:workout-create' %}">
+                <a class="btn btn-warning" href="{% url 'workout:workout-create' %}">
                     <i class="fa-solid fa-plus"></i> Create Workout
                 </a>
             </div>

@@ -1,10 +1,9 @@
 {% extends "base_generic.html" %}
-
 {% block title %}
-<br><br>
+    <br>
+    <br>
     Notification List
 {% endblock title %}
-
 {% block content %}
     <div class="row justify-content-center mb-4">
         <div class="col-md-8">
@@ -12,20 +11,18 @@
             <ul>
                 {% for notification in notifications %}
                     <li>
-                        <strong>Fitness Group: </strong>{{ notification.fitness_group }}
+                        <strong>Fitness Group:</strong>{{ notification.fitness_group }}
                         <br>
-                        <strong>Message: </strong>{{ notification.message }}
+                        <strong>Message:</strong>{{ notification.message }}
                         <br>
-                        <strong>Sent By: </strong>{{ notification.sent_by.username }}
+                        <strong>Sent By:</strong>{{ notification.sent_by.username }}
                         <br>
-                        <strong>Recipients: </strong>
+                        <strong>Recipients:</strong>
                         <ul>
-                            {% for recipient in notification.recipients.all %}
-                                <li>{{ recipient.username }}</li>
-                            {% endfor %}
+                            {% for recipient in notification.recipients.all %}<li>{{ recipient.username }}</li>{% endfor %}
                         </ul>
                         <br>
-                        <strong>Timestamp: </strong>{{ notification.timestamp|date:"d-m-Y H:i:s" }}
+                        <strong>Timestamp:</strong>{{ notification.timestamp|date:"d-m-Y H:i:s" }}
                     </li>
                     <hr>
                 {% empty %}
@@ -37,7 +34,8 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="text-center">
-                <a class="btn btn-warning" href="{% url 'mmc:notification-create' %}">
+                <a class="btn btn-warning"
+                   href="{% url 'notification:notification-create' %}">
                     <i class="fa-solid fa-plus"></i> Create Notification
                 </a>
             </div>
