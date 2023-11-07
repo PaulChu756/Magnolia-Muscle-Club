@@ -16,9 +16,11 @@ class NotificationCreateView(generic.CreateView):
 # ListView and DetailView for Notification model
 class NotificationListView(generic.ListView):
     model = models.Notification
-    template_name = "notification_list.html"
+    template_name = "notification/notification_list.html"
     context_object_name = "notifications"
 
+class NotificationDetailView(generic.DetailView):
+    model = models.Notification
 
 # UpdateView for the Notification model
 class NotificationUpdateView(generic.UpdateView):
@@ -29,8 +31,7 @@ class NotificationUpdateView(generic.UpdateView):
     extra_context = {"title_text": "Edit Notification", "button_text": "Update"}
 
 
-class NotificationDetailView(generic.DetailView):
-    model = models.Notification
+
 
 
 # DeleteView for the Notification model

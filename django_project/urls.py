@@ -45,6 +45,7 @@ urlpatterns = [
     path("accounts/", include("user_profile.urls")),
     path("", include("meal.urls")),
     path("", include("workout.urls")),
+    path("", include("notification.urls")),
 ]
 
 urlpatterns += [
