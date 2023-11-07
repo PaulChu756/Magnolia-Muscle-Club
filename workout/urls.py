@@ -22,7 +22,7 @@ urlpatterns = [
     path("workoutschedule/list/", views.WorkoutScheduleListView.as_view(), name="workoutschedule-list",),
     path("day/list/", views.DayListView.as_view(), name="day-list"),
     path("exercise/list/", views.ExerciseListView.as_view(), name="exercise-list"),
-    path("workoutvideos/list/", views.WorkOutVideosListView.as_view(), name="workoutvideos-list"),
+    path("workoutvideos/list/", views.WorkOutVideosListView.as_view(), name="workoutvideos-list",),
 
 
     # Detail views
