@@ -64,7 +64,7 @@ class WorkOutVideosCreateView(generic.CreateView):
     model = models.WorkOutVideos
     fields = "__all__"
     success_url = reverse_lazy("workout:workoutvideos-list")
-    template_name = "generic_workoutvideos_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Workout Videos", "button_text": "Add"}
 
 
@@ -207,7 +207,7 @@ class ExerciseUpdateView(generic.UpdateView):
 class WorkOutVideosUpdateView(generic.UpdateView):
     model = models.WorkOutVideos
     fields = "__all__"
-    template_name = "workoutvideos_form.html"
+    template_name = "generic_create_update_form.html"
     success_url = reverse_lazy("workout:workoutvideos-list")
     extra_context = {"title_text": "Edit Workout Videos", "button_text": "Update"}
 
@@ -262,6 +262,6 @@ class ExerciseDeleteView(generic.DeleteView):
 # DeleteView for the WorkOutVideos model
 class WorkOutVideosDeleteView(generic.DeleteView):
     model = models.WorkOutVideos
-    success_url = reverse_lazy("mmc:workoutvideos-list")
-    template_name = "workoutvideos_confirm_delete.html"
+    success_url = reverse_lazy("workout:workoutvideos-list")
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Workout Videos"}
