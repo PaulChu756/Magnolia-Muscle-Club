@@ -37,7 +37,7 @@ class WorkoutScheduleCreateView(generic.CreateView):
     model = models.WorkoutSchedule
     fields = "__all__"
     success_url = reverse_lazy("workout:workoutschedule-list")
-    template_name = "generic_workoutschedule_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Workout Schedule", "button_text": "Add"}
 
 
@@ -173,7 +173,7 @@ class WeightUpdateView(generic.UpdateView):
 class WorkoutScheduleUpdateView(generic.UpdateView):
     model = models.WorkoutSchedule
     fields = "__all__"
-    template_name = "workoutschedule_form.html"
+    template_name = "generic_create_update_form.html"
     success_url = reverse_lazy("workout:workoutschedule-list")
     extra_context = {"title_text": "Edit Workout Schedule", "button_text": "Update"}
 
@@ -241,8 +241,8 @@ class PersonalBestDeleteView(generic.DeleteView):
 # DeleteView for the WorkoutSchedule model
 class WorkoutScheduleDeleteView(generic.DeleteView):
     model = models.WorkoutSchedule
-    success_url = reverse_lazy("mmc:workoutschedule-list")
-    template_name = "workoutschedule_confirm_delete.html"
+    success_url = reverse_lazy("workout:workoutschedule-list")
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Workout Schedule"}
 
 # DeleteView for the Day model

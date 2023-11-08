@@ -43,6 +43,8 @@ class WorkoutSchedule(models.Model):
     """Workout schedule model."""
 
     workoutName = models.CharField(max_length=255)
+    reps = models.IntegerField(default=10)
+    sets = models.IntegerField(default=3)
     start_date = models.DateField()
     end_date = models.DateField()
 
