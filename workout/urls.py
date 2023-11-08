@@ -43,7 +43,6 @@ urlpatterns = [
     path("exercise/<int:pk>/update/", views.ExerciseUpdateView.as_view(), name="exercise-update"),
     path("workoutvideos/<int:pk>/update/", views.WorkOutVideosUpdateView.as_view(), name="workoutvideos-update",),
 
-
     #Delete
     path("workout/<int:pk>/delete/", views.WorkoutDeleteView.as_view(), name="workout-delete"),
     path("weight/<int:pk>/delete/", views.WeightDeleteView.as_view(), name="weight-delete"),
@@ -52,4 +51,5 @@ urlpatterns = [
     path("day/<int:pk>/delete/", views.DayDeleteView.as_view(), name="day-delete"),
     path("exercise/<int:pk>/delete/", views.ExerciseDeleteView.as_view(), name="exercise-delete"),
     path("workoutvideos/<int:pk>/delete/", views.WorkOutVideosDeleteView.as_view(), name="workoutvideos-delete",),
+
 ]
