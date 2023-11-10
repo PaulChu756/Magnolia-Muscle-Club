@@ -8,7 +8,7 @@ class FoodLibraryCreateView(generic.CreateView):
     model = models.FoodLibrary
     fields = "__all__"
     success_url = reverse_lazy("meal:foodlibrary-list")
-    template_name = "generic_foodlibrary_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Food Library", "button_text": "Add"}
 
 
@@ -17,7 +17,7 @@ class MealEntryCreateView(generic.CreateView):
     model = models.MealEntry
     fields = "__all__"
     success_url = reverse_lazy("meal:mealentry-list")
-    template_name = "generic_mealentry_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Meal Entry", "button_text": "Add"}
 
 
@@ -47,7 +47,7 @@ class MealEntryDetailView(generic.DetailView):
 class FoodLibraryUpdateView(generic.UpdateView):
     model = models.FoodLibrary
     fields = "__all__"
-    template_name = "foodlibrary_form.html"
+    template_name = "generic_create_update_form.html"
     success_url = reverse_lazy("meal:foodlibrary-list")
     extra_context = {"title_text": "Edit Food Library", "button_text": "Update"}
 
@@ -56,7 +56,7 @@ class FoodLibraryUpdateView(generic.UpdateView):
 class MealEntryUpdateView(generic.UpdateView):
     model = models.MealEntry
     fields = "__all__"
-    template_name = "mealentry_form.html"
+    template_name = "generic_create_update_form.html"
     success_url = reverse_lazy("meal:mealentry-list")
     extra_context = {"title_text": "Edit Meal Entry", "button_text": "Update"}
 
@@ -65,7 +65,7 @@ class MealEntryUpdateView(generic.UpdateView):
 class FoodLibraryDeleteView(generic.DeleteView):
     model = models.FoodLibrary
     success_url = reverse_lazy("meal:foodlibrary-list")
-    template_name = "foodlibrary_confirm_delete.html"
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Food Library"}
 
 
@@ -73,5 +73,5 @@ class FoodLibraryDeleteView(generic.DeleteView):
 class MealEntryDeleteView(generic.DeleteView):
     model = models.MealEntry
     success_url = reverse_lazy("meal:mealentry-list")
-    template_name = "mealentry_confirm_delete.html"
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Meal Entry"}

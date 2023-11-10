@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-    Food Library
+    Meal Entries
 {% endblock title %}
 
 {% block content %}
@@ -9,26 +9,27 @@
     <div class="col-md-6">
         {% if object_list %}
             <ul>
-                {% for food in object_list %}
+                {% for meal in object_list %}
                     <li>
-                        <a href="{% url 'meal:foodlibrary-detail' food.id %}">
-                            {{ food.foodDay }} - {{ food.foodChoice }}
+                        <a href="{% url 'meal:mealentry-detail' meal.id %}">
+                            {{ meal.date|date:"d-m-Y" }} - {{ meal.get_meal_type_display }}
                         </a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No entries in the food library.</p>
+            <p>No meal entries available.</p>
         {% endif %}
     </div>
 </div>
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="text-center">
-            <a class="btn btn-warning" href="{% url 'meal:foodlibrary-create' %}">
-                <i class="fa-solid fa-plus"></i> Add Food Entry
+            <a class="btn btn-warning" href="{% url 'meal:mealentry-create' %}">
+                <i class="fa-solid fa-plus"></i> Add Meal Entry
             </a>
         </div>
     </div>
 </div>
 {% endblock content %}
+﻿

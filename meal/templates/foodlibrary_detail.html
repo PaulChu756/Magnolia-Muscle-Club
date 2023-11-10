@@ -1,25 +1,35 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-    <br>
-    <br>
-    Food Library Details
+    Food Library: {{ foodlibrary.foodDay }} - {{ foodlibrary.foodChoice }}
 {% endblock title %}
 
 {% block content %}
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <h2>Food Library Details</h2>
-            <ul>
-                <li>
-                    <strong>Food Day: </strong>{{ food.foodDay }}
-                    <br>
-                    <strong>Food Choice: </strong>{{ food.foodChoice }}
-                </li>
-            </ul>
-            <a class="btn btn-warning" href="{% url 'meal:foodlibrary-list' %}">
-                <i class="fa-solid fa-arrow-left"></i> Back to Food Library List
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        <div class="text-center">
+            <a class="btn btn-primary"
+               href="{% url 'meal:foodlibrary-update' foodlibrary.id %}">
+                <i class="fa-solid fa-edit"></i> Edit
+            </a>
+            <a class="btn btn-danger"
+               href="{% url 'meal:foodlibrary-delete' foodlibrary.id %}">
+                <i class="fa-solid fa-trash"></i> Delete
             </a>
         </div>
     </div>
+</div>
+<div class="row justify-content-center mb-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 centered">
+        <p class="centered text-secondary">Food Day: {{ foodlibrary.foodDay }}</p>
+        <p class="centered text-secondary">Food Choice: {{ foodlibrary.foodChoice }}</p>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <a href="{% url 'meal:foodlibrary-list' %}">Back to Food Library</a>
+    </div>
+</div>
 {% endblock content %}

@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-    Personal Best for: {{ personalbest.workout.name }}
+    Meal Entry: {{ mealentry.date|date:"d-m-Y" }} - {{ mealentry.get_meal_type_display }}
 {% endblock title %}
 
 {% block content %}
@@ -9,11 +9,11 @@
     <div class="col-md-6">
         <div class="text-center">
             <a class="btn btn-primary"
-               href="{% url 'workout:personalbest-update' personalbest.id %}">
+               href="{% url 'meal:mealentry-update' mealentry.id %}">
                 <i class="fa-solid fa-edit"></i> Edit
             </a>
             <a class="btn btn-danger"
-               href="{% url 'workout:personalbest-delete' personalbest.id %}">
+               href="{% url 'meal:mealentry-delete' mealentry.id %}">
                 <i class="fa-solid fa-trash"></i> Delete
             </a>
         </div>
@@ -22,14 +22,16 @@
 <div class="row justify-content-center mb-5">
     <div class="col-md-4"></div>
     <div class="col-md-4 centered">
-        <p class="centered text-secondary">Personal Best Value: {{ personalbest.value }}</p>
-        <p class="centered text-secondary">Workout Type: {{ personalbest.workout.get_workout_type_display }}</p>
+        <p class="centered text-secondary">Date: {{ mealentry.date|date:"d-m-Y" }}</p>
+        <p class="centered text-secondary">Meal Type: {{ mealentry.get_meal_type_display }}</p>
+        <p class="centered text-secondary">Food Item: {{ mealentry.food_item }}</p>
+        <p class="centered text-secondary">Calories Consumed: {{ mealentry.calories_consumed }}</p>
     </div>
     <div class="col-md-4"></div>
 </div>
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <a href="{% url 'workout:personalbest-list' %}">Back to Personal Best List</a>
+        <a href="{% url 'meal:mealentry-list' %}">Back to Meal Entries</a>
     </div>
 </div>
 {% endblock content %}
