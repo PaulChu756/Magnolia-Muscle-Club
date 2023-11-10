@@ -42,10 +42,10 @@ urlpatterns = [
         name="about",
     ),
     path("accounts/", include("users.urls")),
-    path("accounts/", include("user_profile.urls")),
+    path("profile/", include("user_profile.urls")),
     path("", include("meal.urls")),
     path("", include("workout.urls")),
-    path("", include("notification.urls")),
+    path("notification/", include("notification.urls")),
 ]
 
 urlpatterns += [
