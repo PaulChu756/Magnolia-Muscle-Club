@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <br>
+    <br>
+    Food Library Details
+{% endblock title %}
+
+{% block content %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <h2>Food Library Details</h2>
+            <ul>
+                <li>
+                    <strong>Food Day: </strong>{{ food.foodDay }}
+                    <br>
+                    <strong>Food Choice: </strong>{{ food.foodChoice }}
+                </li>
+            </ul>
+            <a class="btn btn-warning" href="{% url 'meal:foodlibrary-list' %}">
+                <i class="fa-solid fa-arrow-left"></i> Back to Food Library List
+            </a>
+        </div>
+    </div>
+{% endblock content %}

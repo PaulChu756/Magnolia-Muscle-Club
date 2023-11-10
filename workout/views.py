@@ -28,7 +28,7 @@ class PersonalBestCreateView(generic.CreateView):
     model = models.PersonalBest
     fields = "__all__"
     success_url = reverse_lazy("workout:personalbest-list")
-    template_name = "generic_personalbest_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Personal Best", "button_text": "Add"}
 
 

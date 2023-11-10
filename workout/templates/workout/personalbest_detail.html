@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <br>
+    <br>
+    Personal Best Details
+{% endblock title %}
+
+{% block content %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <h2>Personal Best Details</h2>
+            <ul>
+                <li>
+                    <strong>Workout: </strong>{{ personalbest.workout }}
+                    <br>
+                    <strong>Value: </strong>{{ personalbest.value }}
+                </li>
+            </ul>
+            <a class="btn btn-warning" href="{% url 'workout:personalbest-list' %}">
+                <i class="fa-solid fa-arrow-left"></i> Back to Personal Best List
+            </a>
+        </div>
+    </div>
+{% endblock content %}
