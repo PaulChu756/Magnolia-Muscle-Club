@@ -8,7 +8,7 @@ from users.models import CustomUser
 TYPE_CHOICES = (
     ("Free", "Free"),
     ("Paid", "Paid"),
-    ("Admin", "Admin"),
+    ("Trainer", "Trainer"),
 )
 
 GENDER_CHOICES = (
@@ -26,11 +26,12 @@ class UserProfile(models.Model):
     type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default="Free")
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    age = models.IntegerField(default=18)
     picture = models.ImageField(upload_to="profile_pictures/", blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    phone = models.PositiveIntegerField(blank=True, null=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Male")
+    weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, default=200)
+    height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, default=5.04)
+    phone = models.CharField(blank=True, null=True, default="1-337-123-1234", max_length=15)
 
 
 @receiver(post_save, sender=CustomUser)
