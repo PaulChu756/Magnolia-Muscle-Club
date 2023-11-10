@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from users.models import CustomUser
 
+
 TYPE_CHOICES = (
     ("Free", "Free"),
     ("Paid", "Paid"),
