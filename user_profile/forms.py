@@ -3,7 +3,7 @@ from django import forms
 
 from user_profile.models import UserProfile
 
-ACCOUNT_CHOICES = ((1, "Student"), (2, "Teacher"))
+#ACCOUNT_CHOICES = ((1, "Student"), (2, "Teacher"))
 
 
 class UserProfileUpdateForm(forms.ModelForm):

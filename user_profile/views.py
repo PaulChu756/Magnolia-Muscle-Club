@@ -1,10 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView
-
 from users.forms import CustomUserChangeForm
 from users.models import CustomUser
-
 from . import models
 
 """User profile view."""
@@ -91,6 +89,15 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         #     user_profile.is_student, user_profile.is_teacher = True, False
         # else:
         #     user_profile.is_student, user_profile.is_teacher = False, True
+
+        if self.request.user.userprofile.is_free_account:
+            return 'free'
+        elif self.request.user.userprofile.is_paid_account:
+            return 'paid'
+        elif self.request.user.userprofile.is_trainer_account:
+            return 'trainer'
+        else:
+            return 'free'  # Default to free account
 
         user_profile.save()
         custom_user.save()
