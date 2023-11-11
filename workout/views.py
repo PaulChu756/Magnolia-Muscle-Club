@@ -28,7 +28,7 @@ class PersonalBestCreateView(generic.CreateView):
     model = models.PersonalBest
     fields = "__all__"
     success_url = reverse_lazy("workout:personalbest-list")
-    template_name = "generic_personalbest_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Personal Best", "button_text": "Add"}
 
 
@@ -46,7 +46,7 @@ class DayCreateView(generic.CreateView):
     model = models.Day
     fields = "__all__"
     success_url = reverse_lazy("workout:day-list")
-    template_name = "generic_day_form.html"
+    template_name = "generic_create_update_form.html"
     extra_context = {"title_text": "Add Day", "button_text": "Add"}
 
 
@@ -181,15 +181,15 @@ class WorkoutScheduleUpdateView(generic.UpdateView):
 class PersonalBestUpdateView(generic.UpdateView):
     model = models.PersonalBest
     fields = "__all__"
-    template_name = "personalbest_form.html"
-    success_url = reverse_lazy("mmc:personalbest-list")
+    template_name = "generic_create_update_form.html"
+    success_url = reverse_lazy("workout:personalbest-list")
     extra_context = {"title_text": "Edit Personal Best", "button_text": "Update"}
 
 # UpdateView for the Day model
 class DayUpdateView(generic.UpdateView):
     model = models.Day
     fields = "__all__"
-    template_name = "day_form.html"
+    template_name = "generic_create_update_form.html"
     success_url = reverse_lazy("workout:day-list")
     extra_context = {"title_text": "Edit Day", "button_text": "Update"}
 
@@ -235,7 +235,7 @@ class WeightDeleteView(generic.DeleteView):
 class PersonalBestDeleteView(generic.DeleteView):
     model = models.PersonalBest
     success_url = reverse_lazy("workout:personalbest-list")
-    template_name = "personalbest_confirm_delete.html"
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Personal Best"}
 
 # DeleteView for the WorkoutSchedule model
@@ -248,8 +248,8 @@ class WorkoutScheduleDeleteView(generic.DeleteView):
 # DeleteView for the Day model
 class DayDeleteView(generic.DeleteView):
     model = models.Day
-    success_url = reverse_lazy("mmc:day-list")
-    template_name = "day_confirm_delete.html"
+    success_url = reverse_lazy("workout:day-list")
+    template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Day"}
 
 # DeleteView for the Exercise model

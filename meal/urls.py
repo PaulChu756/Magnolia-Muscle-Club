@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = "meals"
+app_name = 'meal'
 
 urlpatterns = [
     # Create views
@@ -12,6 +12,7 @@ urlpatterns = [
     # List views
     path("foodlibrary/list/", views.FoodLibraryListView.as_view(), name="foodlibrary-list"),
     path("mealentry/list/", views.MealEntryListView.as_view(), name="mealentry-list"),
+    
     path("foodlibrary/<int:pk>/", views.FoodLibraryDetailView.as_view(), name="foodlibrary-detail"),
     path("mealentry/<int:pk>/", views.MealEntryDetailView.as_view(), name="mealentry-detail"),
 
