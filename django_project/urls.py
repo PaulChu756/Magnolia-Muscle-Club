@@ -27,21 +27,25 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path(
-        "team",
+        "team/",
         TemplateView.as_view(template_name="team.html"),
         name="team",
     ),
     path(
-        "wireframe",
+        "wireframe/",
         TemplateView.as_view(template_name="wireframe.html"),
         name="wireframe",
     ),
     path(
-        "about",
+        "about/",
         TemplateView.as_view(template_name="about.html"),
         name="about",
     ),
     path("accounts/", include("users.urls")),
+    path("profile/", include("user_profile.urls")),
+    path("", include("meal.urls")),
+    path("", include("workout.urls")),
+    path("notification/", include("notification.urls")),
 ]
 
 urlpatterns += [
@@ -93,8 +97,6 @@ urlpatterns += [
         ),
         name="password_reset_complete",
     ),
-
-    path('', include('mmc.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

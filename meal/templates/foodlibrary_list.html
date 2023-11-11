@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    Food Library
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        {% if object_list %}
+            <ul>
+                {% for food in object_list %}
+                    <li>
+                        <a href="{% url 'meal:foodlibrary-detail' food.id %}">
+                            {{ food.foodDay }} - {{ food.foodChoice }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No entries in the food library.</p>
+        {% endif %}
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="text-center">
+            <a class="btn btn-warning" href="{% url 'meal:foodlibrary-create' %}">
+                <i class="fa-solid fa-plus"></i> Add Food Entry
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

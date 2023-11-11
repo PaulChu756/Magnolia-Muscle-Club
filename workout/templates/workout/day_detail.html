@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<br><br>
+    Day: {{ day.schedule.workoutName }} - {{ day.day_of_week }}
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        <div class="text-center">
+            <a class="btn btn-primary"
+               href="{% url 'workout:day-update' day.id %}">
+                <i class="fa-solid fa-edit"></i> Edit
+            </a>
+            <a class="btn btn-danger"
+               href="{% url 'workout:day-delete' day.id %}">
+                <i class="fa-solid fa-trash"></i> Delete
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center mb-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 centered">
+        <p class="centered text-secondary">Day of Week: {{ day.day_of_week }}</p>
+        <p class="centered text-secondary">Workout Name: {{ day.schedule.workoutName }}</p>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <a href="{% url 'workout:day-list' %}">Back to Day List</a>
+    </div>
+</div>
+{% endblock content %}
