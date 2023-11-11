@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Detail</title>
+</head>
+<body>
+    <h1>Exercise Detail</h1>
+    <p><strong>Workout Name:</strong> {{ exercise.workoutName }}</p>
+    <p><strong>Description:</strong> {{ exercise.description }}</p>
+    <p><strong>Day:</strong> {{ exercise.day }}</p>
+
+    <a href="{% url 'exercise_list' %}">Back to Exercise List</a>
+</body>
+</html>
