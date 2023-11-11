@@ -5,33 +5,42 @@ from django.dispatch import receiver
 from users.models import CustomUser
 
 
-TYPE_CHOICES = (
-    ("Free", "Free"),
-    ("Paid", "Paid"),
-    ("Trainer", "Trainer"),
-)
+# TYPE_CHOICES = (
+#     ("Free", "Free"),
+#     ("Paid", "Paid"),
+#     ("Trainer", "Trainer"),
+# )
 
-GENDER_CHOICES = (
-    ("Male", "Male"),
-    ("Female", "Female"),
-    ("Other", "Other"),
-)
+# GENDER_CHOICES = (
+#     ("Male", "Male"),
+#     ("Female", "Female"),
+#     ("Other", "Other"),
+# )
 
 
 # Create your models here.
 class UserProfile(models.Model):
     """User Profile model."""
 
+    class Gender(models.IntegerChoices):
+        """Gender choice class."""
+        FEMALE = 1
+        MALE = 2
+        OTHER = 3
+
+    #type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default="Free")
     custom_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default="Free")
+    gender = models.IntegerField(choices=Gender.choices)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     age = models.IntegerField(default=18)
     picture = models.ImageField(upload_to="profile_pictures/", blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Male")
-    weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, default=200)
-    height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, default=5.04)
-    phone = models.CharField(blank=True, null=True, default="1-337-123-1234", max_length=15)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    phone = models.CharField(blank=True, null=True, default="1-123-456-7890", max_length=15)
+    is_free_account = models.BooleanField(default=True)
+    is_paid_account = models.BooleanField(default=False)
+    is_trainer_account = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=CustomUser)

@@ -1,12 +1,16 @@
 from django.urls import reverse_lazy
 from django.views import generic
-
 from . import models
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.utils.timezone import now
+from user_profile.mixins import MemberRequiredMixin, TrainerRequiredMixin
 
 
 # Create your views here.
 # CreateView for the Workout model
-class WorkoutCreateView(generic.CreateView):
+class WorkoutCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.Workout
     fields = "__all__"
     success_url = reverse_lazy("workout:workout-list")
@@ -150,15 +154,14 @@ class WorkOutVideosDetailView(generic.DetailView):
     model = models.WorkOutVideos
 
 
-class WorkoutUpdateView(generic.UpdateView):
+
+
+class WorkoutUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.Workout
     fields = "__all__"
     success_url = reverse_lazy("workout:workout-list")
     template_name = "generic_workout_form.html"
     extra_context = {"title_text": "Edit Workout", "button_text": "Update"}
-
-
-
 
 # UpdateView for the Weight model
 class WeightUpdateView(generic.UpdateView):
@@ -216,7 +219,7 @@ class WorkOutVideosUpdateView(generic.UpdateView):
 
 
 # DeleteView for the Workout model
-class WorkoutDeleteView(generic.DeleteView):
+class WorkoutDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.Workout
     success_url = reverse_lazy("workout:workout-list")
     template_name = "generic_confirm_delete.html"
