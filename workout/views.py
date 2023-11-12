@@ -19,7 +19,7 @@ class WorkoutCreateView(TrainerRequiredMixin, generic.CreateView):
 
 
 # CreateView for the Weight model
-class WeightCreateView(generic.CreateView):
+class WeightCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.Weight
     fields = "__all__"
     success_url = reverse_lazy("workout:weight-list")
@@ -28,7 +28,7 @@ class WeightCreateView(generic.CreateView):
 
 
 # CreateView for the PersonalBest model
-class PersonalBestCreateView(generic.CreateView):
+class PersonalBestCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.PersonalBest
     fields = "__all__"
     success_url = reverse_lazy("workout:personalbest-list")
@@ -37,7 +37,7 @@ class PersonalBestCreateView(generic.CreateView):
 
 
 # CreateView for the WorkoutSchedule model
-class WorkoutScheduleCreateView(generic.CreateView):
+class WorkoutScheduleCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.WorkoutSchedule
     fields = "__all__"
     success_url = reverse_lazy("workout:workoutschedule-list")
@@ -46,7 +46,7 @@ class WorkoutScheduleCreateView(generic.CreateView):
 
 
 # CreateView for the Day model
-class DayCreateView(generic.CreateView):
+class DayCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.Day
     fields = "__all__"
     success_url = reverse_lazy("workout:day-list")
@@ -55,7 +55,7 @@ class DayCreateView(generic.CreateView):
 
 
 # CreateView for the Exercise model
-class ExerciseCreateView(generic.CreateView):
+class ExerciseCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.Exercise
     fields = "__all__"
     success_url = reverse_lazy("workout:exercise-list")
@@ -64,7 +64,7 @@ class ExerciseCreateView(generic.CreateView):
 
 
 # CreateView for the WorkOutVideos model
-class WorkOutVideosCreateView(generic.CreateView):
+class WorkOutVideosCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.WorkOutVideos
     fields = "__all__"
     success_url = reverse_lazy("workout:workoutvideos-list")
@@ -164,7 +164,7 @@ class WorkoutUpdateView(TrainerRequiredMixin, generic.UpdateView):
     extra_context = {"title_text": "Edit Workout", "button_text": "Update"}
 
 # UpdateView for the Weight model
-class WeightUpdateView(generic.UpdateView):
+class WeightUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.Weight
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -173,7 +173,7 @@ class WeightUpdateView(generic.UpdateView):
 
 
 # UpdateView for the WorkoutSchedule model
-class WorkoutScheduleUpdateView(generic.UpdateView):
+class WorkoutScheduleUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.WorkoutSchedule
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -181,7 +181,7 @@ class WorkoutScheduleUpdateView(generic.UpdateView):
     extra_context = {"title_text": "Edit Workout Schedule", "button_text": "Update"}
 
 # UpdateView for the PersonalBest model
-class PersonalBestUpdateView(generic.UpdateView):
+class PersonalBestUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.PersonalBest
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -189,7 +189,7 @@ class PersonalBestUpdateView(generic.UpdateView):
     extra_context = {"title_text": "Edit Personal Best", "button_text": "Update"}
 
 # UpdateView for the Day model
-class DayUpdateView(generic.UpdateView):
+class DayUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.Day
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -198,7 +198,7 @@ class DayUpdateView(generic.UpdateView):
 
 
 # UpdateView for the Exercise model
-class ExerciseUpdateView(generic.UpdateView):
+class ExerciseUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.Exercise
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -207,7 +207,7 @@ class ExerciseUpdateView(generic.UpdateView):
 
 
 # UpdateView for the WorkOutVideos model
-class WorkOutVideosUpdateView(generic.UpdateView):
+class WorkOutVideosUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.WorkOutVideos
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -227,7 +227,7 @@ class WorkoutDeleteView(TrainerRequiredMixin, generic.DeleteView):
 
 
 # DeleteView for the Weight model
-class WeightDeleteView(generic.DeleteView):
+class WeightDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.Weight
     success_url = reverse_lazy("workout:weight-list")
     template_name = "generic_confirm_delete.html"
@@ -235,35 +235,35 @@ class WeightDeleteView(generic.DeleteView):
 
 
 # DeleteView for the PersonalBest model
-class PersonalBestDeleteView(generic.DeleteView):
+class PersonalBestDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.PersonalBest
     success_url = reverse_lazy("workout:personalbest-list")
     template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Personal Best"}
 
 # DeleteView for the WorkoutSchedule model
-class WorkoutScheduleDeleteView(generic.DeleteView):
+class WorkoutScheduleDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.WorkoutSchedule
     success_url = reverse_lazy("workout:workoutschedule-list")
     template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Workout Schedule"}
 
 # DeleteView for the Day model
-class DayDeleteView(generic.DeleteView):
+class DayDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.Day
     success_url = reverse_lazy("workout:day-list")
     template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Day"}
 
 # DeleteView for the Exercise model
-class ExerciseDeleteView(generic.DeleteView):
+class ExerciseDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.Exercise
     success_url = reverse_lazy("workout:exercise-list")
     template_name = "generic_confirm_delete.html"
     extra_content = {"title_text": "Delete Exercise"}
 
 # DeleteView for the WorkOutVideos model
-class WorkOutVideosDeleteView(generic.DeleteView):
+class WorkOutVideosDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.WorkOutVideos
     success_url = reverse_lazy("workout:workoutvideos-list")
     template_name = "generic_confirm_delete.html"
