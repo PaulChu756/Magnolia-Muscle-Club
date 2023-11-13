@@ -5,7 +5,7 @@ from . import models
 
 
 # CreateView for the Notification model
-class NotificationCreateView(generic.CreateView):
+class NotificationCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.Notification
     fields = "__all__"
     success_url = reverse_lazy("notification:notification-list")
@@ -14,16 +14,16 @@ class NotificationCreateView(generic.CreateView):
 
 
 # ListView and DetailView for Notification model
-class NotificationListView(generic.ListView):
+class NotificationListView(TrainerRequiredMixin, generic.ListView):
     model = models.Notification
     template_name = "notification/notification_list.html"
     context_object_name = "notifications"
 
-class NotificationDetailView(generic.DetailView):
+class NotificationDetailView(TrainerRequiredMixin, generic.DetailView):
     model = models.Notification
 
 # UpdateView for the Notification model
-class NotificationUpdateView(generic.UpdateView):
+class NotificationUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.Notification
     fields = "__all__"
     template_name = "notification_form.html"
@@ -35,7 +35,7 @@ class NotificationUpdateView(generic.UpdateView):
 
 
 # DeleteView for the Notification model
-class NotificationDeleteView(generic.DeleteView):
+class NotificationDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.Notification
     success_url = reverse_lazy("notification:notification-list")
     template_name = "notification_confirm_delete.html"
