@@ -24,10 +24,21 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="text-center">
-            <a class="btn btn-warning" href="{% url 'workout:workoutschedule-create' %}">
-                <i class="fa-solid fa-plus"></i> Create Workout Schedule
-            </a>
+            {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                <a class="btn btn-warning" href="{% url 'workout:workoutschedule-create' %}">
+                    <i class="fa-solid fa-plus"></i> Create Workout Schedule
+                </a>
+            {% endif %}
+            {% comment %} {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                <a class="btn btn-warning disabled"
+                   href="{% url 'workout:workoutschedule-create' %}"
+                   role="button"
+                   aria-disabled="true">
+                    <i class="fa-solid fa-plus"></i> Create Workout Schedule
+                </a>
+            {% endif %} {% endcomment %}
         </div>
     </div>
 </div>
+
 {% endblock content %}
