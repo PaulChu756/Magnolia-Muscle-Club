@@ -22,17 +22,19 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="text-center">
-                <a class="btn btn-primary"
-                   href="{% url 'workout:weight-update' weight.pk %}">
-                    <i class="fa-solid fa-edit"></i> Edit
-                </a>
-                <a class="btn btn-danger"
-                   href="{% url 'workout:weight-delete' weight.pk %}">
-                    <i class="fa-solid fa-trash"></i> Delete
-                </a>
                 <a class="btn btn-warning" href="{% url 'workout:weight-list' %}">
                     <i class="fa-solid fa-arrow-left"></i> Back to Weight List
                 </a>
+                {% if user.is_authenticated and not user.userprofile.is_trainer_account %}
+                    <a class="btn btn-primary"
+                    href="{% url 'workout:weight-update' weight.pk %}">
+                     <i class="fa-solid fa-edit"></i> Edit
+                 <a class="btn btn-danger"
+                    href="{% url 'workout:weight-delete' weight.pk %}">
+                     <i class="fa-solid fa-trash"></i> Delete
+                 </a>
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>
