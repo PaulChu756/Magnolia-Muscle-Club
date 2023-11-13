@@ -1,38 +1,35 @@
-{% extends "base_generic.html" %}
-
-{% block title %}
-    <br>
-    <br>
-    Day List
-{% endblock title %}
-
-{% block content %}
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <h2>Day List</h2>
-            <ul>
-                {% for day in days %}
-                    <li>
-                        <strong>Workout Schedule: </strong>{{ day.schedule.workoutName }}
-                        <br>
-                        <strong>Day of the Week: </strong>{{ day.day_of_week }}
-                        <br>
-                        <a href="{% url 'workout:day-detail' day.pk %}">View Details</a>
-                    </li>
-                    <hr>
-                {% empty %}
-                    <p>No day entries available.</p>
-                {% endfor %}
-            </ul>
-        </div>
+{% extends "base_generic.html" %} {% block title %}
+<br />
+<br />
+Day List {% endblock title %} {% block content %}
+<div class="row justify-content-center mb-4">
+  <div class="col-md-8">
+    <h2>Day List</h2>
+    <ul>
+      {% for day in days %}
+      <li>
+        <strong>Workout Schedule: </strong>{{ day.schedule.workoutName }}
+        <br />
+        <strong>Day of the Week: </strong>{{ day.day_of_week }}
+        <br />
+        <a href="{% url 'workout:day-detail' day.pk %}">View Details</a>
+      </li>
+      <hr />
+      {% empty %}
+      <p>No day entries available.</p>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="text-center">
+      {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+      <a class="btn btn-warning" href="{% url 'workout:day-create' %}">
+        <i class="fa-solid fa-plus"></i> Add Day Entry
+      </a>
+      {% endif %}
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="text-center">
-                <a class="btn btn-warning" href="{% url 'workout:day-create' %}">
-                    <i class="fa-solid fa-plus"></i> Add Day Entry
-                </a>
-            </div>
-        </div>
-    </div>
+  </div>
+</div>
 {% endblock content %}
