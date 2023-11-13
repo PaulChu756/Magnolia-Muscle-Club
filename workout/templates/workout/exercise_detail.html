@@ -1,34 +1,34 @@
-{% extends "base_generic.html" %}
-{% block title %}
-    Exercise Details
-{% endblock title %}
-{% block content %}
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-6">
-            <h2>Exercise Details</h2>
-            <p>
-                <strong>Workout Name: </strong>{{ exercise.workoutName }}
-            </p>
-            <p>
-                <strong>Description: </strong>{{ exercise.description }}
-            </p>
-        </div>
+{% extends "base_generic.html" %} {% block title %} <br />
+<br />
+Exercise Details {% endblock title %} {% block content %}
+<div class="row justify-content-center mb-4">
+  <div class="col-md-6">
+    <h2>Exercise Details</h2>
+    <p><strong>Workout Name: </strong>{{ exercise.workoutName }}</p>
+    <p><strong>Description: </strong>{{ exercise.description }}</p>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="text-center">
+      {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+      <a
+        class="btn btn-primary"
+        href="{% url 'workout:exercise-update' exercise.pk %}"
+      >
+        <i class="fa-solid fa-edit"></i> Edit
+      </a>
+      <a
+        class="btn btn-danger"
+        href="{% url 'workout:exercise-delete' exercise.pk %}"
+      >
+        <i class="fa-solid fa-trash"></i> Delete
+      </a>
+      <a class="btn btn-warning" href="{% url 'workout:exercise-list' %}">
+        <i class="fa-solid fa-arrow-left"></i> Back to Exercise List
+      </a>
+      {% endif %}
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="text-center">
-                <a class="btn btn-primary"
-                   href="{% url 'workout:exercise-update' exercise.pk %}">
-                    <i class="fa-solid fa-edit"></i> Edit
-                </a>
-                <a class="btn btn-danger"
-                   href="{% url 'workout:exercise-delete' exercise.pk %}">
-                    <i class="fa-solid fa-trash"></i> Delete
-                </a>
-                <a class="btn btn-warning" href="{% url 'workout:exercise-list' %}">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Exercise List
-                </a>
-            </div>
-        </div>
-    </div>
+  </div>
+</div>
 {% endblock content %}
