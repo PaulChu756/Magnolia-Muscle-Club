@@ -1,36 +1,43 @@
-{% extends "base_generic.html" %}
-
-{% block title %}
-<br><br>
-    Personal Best for: {{ personalbest.workout.name }}
-{% endblock title %}
-
-{% block content %}
+{% extends "base_generic.html" %} {% block title %} <br /><br />
+Personal Best for: {{ personalbest.workout.name }} {% endblock title %} {% block
+content %}
 <div class="row justify-content-center mb-4">
-    <div class="col-md-6">
-        <div class="text-center">
-            <a class="btn btn-primary"
-               href="{% url 'workout:personalbest-update' personalbest.id %}">
-                <i class="fa-solid fa-edit"></i> Edit
-            </a>
-            <a class="btn btn-danger"
-               href="{% url 'workout:personalbest-delete' personalbest.id %}">
-                <i class="fa-solid fa-trash"></i> Delete
-            </a>
-        </div>
+  <div class="col-md-6">
+    <div class="text-center">
+      {% if user.is_authenticated and user.userprofile.is_free_account %}
+      <a
+        class="btn btn-primary"
+        href="{% url 'workout:personalbest-update' personalbest.id %}"
+      >
+        <i class="fa-solid fa-edit"></i> Edit
+      </a>
+      <a
+        class="btn btn-danger"
+        href="{% url 'workout:personalbest-delete' personalbest.id %}"
+      >
+        <i class="fa-solid fa-trash"></i> Delete
+      </a>
+      {% endif %}
     </div>
+  </div>
 </div>
 <div class="row justify-content-center mb-5">
-    <div class="col-md-4"></div>
-    <div class="col-md-4 centered">
-        <p class="centered text-secondary">Personal Best Value: {{ personalbest.value }}</p>
-        <p class="centered text-secondary">Workout Type: {{ personalbest.workout.get_workout_type_display }}</p>
-    </div>
-    <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4 centered">
+    <p class="centered text-secondary">
+      Personal Best Value: {{ personalbest.value }}
+    </p>
+    <p class="centered text-secondary">
+      Workout Type: {{ personalbest.workout.get_workout_type_display }}
+    </p>
+  </div>
+  <div class="col-md-4"></div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <a href="{% url 'workout:personalbest-list' %}">Back to Personal Best List</a>
-    </div>
+  <div class="col-md-6">
+    <a href="{% url 'workout:personalbest-list' %}"
+      >Back to Personal Best List</a
+    >
+  </div>
 </div>
 {% endblock content %}
