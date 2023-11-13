@@ -30,7 +30,7 @@ class UserProfile(models.Model):
 
     #type_of_account = models.CharField(max_length=10, choices=TYPE_CHOICES, default="Free")
     custom_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    gender = models.IntegerField(choices=Gender.choices)
+    gender = models.IntegerField(choices=Gender.choices, default=2)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     age = models.IntegerField(default=18)
