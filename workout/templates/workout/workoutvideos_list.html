@@ -8,14 +8,15 @@ Workout Videos
 {% block content %}
 <div class="row justify-content-center mb-4">
     <div class="col-md-6">
-        <h2>Workout Videos</h2>
         {% if object_list %}
             <ul>
                 {% for video in object_list %}
                     <li>
                         <a href="{{ video.workOutVideoLink }}" target="_blank">{{ video.workOutDay }}</a>
-                        <a href="{% url 'workout:workoutvideos-update' video.id %}">Edit</a>
-                        <a href="{% url 'workout:workoutvideos-delete' video.id %}">Delete</a>
+                        {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                            <a href="{% url 'workout:workoutvideos-update' video.id %}">Edit</a>
+                            <a href="{% url 'workout:workoutvideos-delete' video.id %}">Delete</a>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
@@ -27,9 +28,19 @@ Workout Videos
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="text-center">
-            <a class="btn btn-warning" href="{% url 'workout:workoutvideos-create' %}">
-                <i class="fa-solid fa-plus"></i> Add Workout Video
-            </a>
+            {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                <a class="btn btn-warning" href="{% url 'workout:workoutvideos-create' %}">
+                    <i class="fa-solid fa-plus"></i> Add Workout Video
+                </a>
+            {% endif %}
+            {% comment %} {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                <a class="btn btn-warning disabled"
+                   href="{% url 'workout:workoutvideos-create' %}"
+                   role="button"
+                   aria-disabled="true">
+                    <i class="fa-solid fa-plus"></i> Add Workout Video
+                </a>
+            {% endif %} {% endcomment %}
         </div>
     </div>
 </div>
