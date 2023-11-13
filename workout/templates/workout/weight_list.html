@@ -27,10 +27,21 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="text-center">
-                <a class="btn btn-warning" href="{% url 'workout:weight-create' %}">
-                    <i class="fa-solid fa-plus"></i> Add Weight Entry
-                </a>
+                {% if user.is_authenticated and not user.userprofile.is_trainer_account %}
+                    <a class="btn btn-warning" href="{% url 'workout:weight-create' %}">
+                        <i class="fa-solid fa-plus"></i> Add Weight Entry
+                    </a>
+                {% endif %}
+                {% comment %} {% if user.is_authenticated and not user.userprofile.is_trainer_account %}
+                    <a class="btn btn-warning disabled"
+                       href="{% url 'workout:weight-create' %}"
+                       role="button"
+                       aria-disabled="true">
+                        <i class="fa-solid fa-plus"></i> Add Weight Entry
+                    </a>
+                {% endif %} {% endcomment %}
             </div>
         </div>
     </div>
+    
 {% endblock content %}
