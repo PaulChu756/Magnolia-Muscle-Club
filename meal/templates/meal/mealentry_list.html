@@ -26,11 +26,12 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="text-center">
-            <a class="btn btn-warning" href="{% url 'meal:mealentry-create' %}">
-                <i class="fa-solid fa-plus"></i> Add Meal Entry
-            </a>
+            {% if user.is_authenticated and user.userprofile.is_trainer_account %}
+                <a class="btn btn-warning" href="{% url 'meal:mealentry-create' %}">
+                    <i class="fa-solid fa-plus"></i> Add Meal Entry
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
 {% endblock content %}
-﻿
