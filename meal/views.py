@@ -1,10 +1,11 @@
 from django.urls import reverse_lazy
 from django.views import generic
+from user_profile.mixins import MemberRequiredMixin, TrainerRequiredMixin
 
 from . import models
 
 
-class FoodLibraryCreateView(generic.CreateView):
+class FoodLibraryCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.FoodLibrary
     fields = "__all__"
     success_url = reverse_lazy("meal:foodlibrary-list")
@@ -13,7 +14,7 @@ class FoodLibraryCreateView(generic.CreateView):
 
 
 # CreateView for the MealEntry model
-class MealEntryCreateView(generic.CreateView):
+class MealEntryCreateView(TrainerRequiredMixin, generic.CreateView):
     model = models.MealEntry
     fields = "__all__"
     success_url = reverse_lazy("meal:mealentry-list")
@@ -44,7 +45,7 @@ class MealEntryDetailView(generic.DetailView):
 
 
 # UpdateView for the FoodLibrary model
-class FoodLibraryUpdateView(generic.UpdateView):
+class FoodLibraryUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.FoodLibrary
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -53,7 +54,7 @@ class FoodLibraryUpdateView(generic.UpdateView):
 
 
 # UpdateView for the MealEntry model
-class MealEntryUpdateView(generic.UpdateView):
+class MealEntryUpdateView(TrainerRequiredMixin, generic.UpdateView):
     model = models.MealEntry
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -62,7 +63,7 @@ class MealEntryUpdateView(generic.UpdateView):
 
 
 # DeleteView for the FoodLibrary model
-class FoodLibraryDeleteView(generic.DeleteView):
+class FoodLibraryDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.FoodLibrary
     success_url = reverse_lazy("meal:foodlibrary-list")
     template_name = "generic_confirm_delete.html"
@@ -70,7 +71,7 @@ class FoodLibraryDeleteView(generic.DeleteView):
 
 
 # DeleteView for the MealEntry model
-class MealEntryDeleteView(generic.DeleteView):
+class MealEntryDeleteView(TrainerRequiredMixin, generic.DeleteView):
     model = models.MealEntry
     success_url = reverse_lazy("meal:mealentry-list")
     template_name = "generic_confirm_delete.html"
