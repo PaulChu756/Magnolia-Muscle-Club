@@ -19,7 +19,7 @@ class WorkoutCreateView(TrainerRequiredMixin, generic.CreateView):
 
 
 # CreateView for the Weight model
-class WeightCreateView(TrainerRequiredMixin, generic.CreateView):
+class WeightCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Weight
     fields = "__all__"
     success_url = reverse_lazy("workout:weight-list")
@@ -28,7 +28,7 @@ class WeightCreateView(TrainerRequiredMixin, generic.CreateView):
 
 
 # CreateView for the PersonalBest model
-class PersonalBestCreateView(TrainerRequiredMixin, generic.CreateView):
+class PersonalBestCreateView(MemberRequiredMixin, generic.CreateView):
     model = models.PersonalBest
     fields = "__all__"
     success_url = reverse_lazy("workout:personalbest-list")
@@ -83,7 +83,7 @@ class WorkoutListView(generic.ListView):
 
 
 # ListView and DetailView for Weight model
-class WeightListView(generic.ListView):
+class WeightListView(LoginRequiredMixin, generic.ListView):
     model = models.Weight
     template_name = "weight_list.html"
     context_object_name = "weights"
@@ -130,7 +130,7 @@ class WorkoutDetailView(generic.DetailView):
     model = models.Workout
 
 
-class WeightDetailView(generic.DetailView):
+class WeightDetailView(LoginRequiredMixin, generic.DetailView):
     model = models.Weight
 
 
@@ -164,7 +164,7 @@ class WorkoutUpdateView(TrainerRequiredMixin, generic.UpdateView):
     extra_context = {"title_text": "Edit Workout", "button_text": "Update"}
 
 # UpdateView for the Weight model
-class WeightUpdateView(TrainerRequiredMixin, generic.UpdateView):
+class WeightUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.Weight
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -181,7 +181,7 @@ class WorkoutScheduleUpdateView(TrainerRequiredMixin, generic.UpdateView):
     extra_context = {"title_text": "Edit Workout Schedule", "button_text": "Update"}
 
 # UpdateView for the PersonalBest model
-class PersonalBestUpdateView(TrainerRequiredMixin, generic.UpdateView):
+class PersonalBestUpdateView(MemberRequiredMixin, generic.UpdateView):
     model = models.PersonalBest
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -227,7 +227,7 @@ class WorkoutDeleteView(TrainerRequiredMixin, generic.DeleteView):
 
 
 # DeleteView for the Weight model
-class WeightDeleteView(TrainerRequiredMixin, generic.DeleteView):
+class WeightDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = models.Weight
     success_url = reverse_lazy("workout:weight-list")
     template_name = "generic_confirm_delete.html"
@@ -235,7 +235,7 @@ class WeightDeleteView(TrainerRequiredMixin, generic.DeleteView):
 
 
 # DeleteView for the PersonalBest model
-class PersonalBestDeleteView(TrainerRequiredMixin, generic.DeleteView):
+class PersonalBestDeleteView(MemberRequiredMixin, generic.DeleteView):
     model = models.PersonalBest
     success_url = reverse_lazy("workout:personalbest-list")
     template_name = "generic_confirm_delete.html"
