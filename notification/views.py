@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import generic
+from user_profile.mixins import MemberRequiredMixin, TrainerRequiredMixin
 
 from . import models
 
@@ -14,12 +15,12 @@ class NotificationCreateView(TrainerRequiredMixin, generic.CreateView):
 
 
 # ListView and DetailView for Notification model
-class NotificationListView(TrainerRequiredMixin, generic.ListView):
+class NotificationListView(LoginRequiredMixin, generic.ListView):
     model = models.Notification
     template_name = "notification/notification_list.html"
     context_object_name = "notifications"
 
-class NotificationDetailView(TrainerRequiredMixin, generic.DetailView):
+class NotificationDetailView(LoginRequiredMixin, generic.DetailView):
     model = models.Notification
 
 # UpdateView for the Notification model
