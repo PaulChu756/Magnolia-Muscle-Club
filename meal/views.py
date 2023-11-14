@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from user_profile.mixins import MemberRequiredMixin, TrainerRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from . import models
 
@@ -14,7 +15,7 @@ class FoodLibraryCreateView(TrainerRequiredMixin, generic.CreateView):
 
 
 # CreateView for the MealEntry model
-class MealEntryCreateView(TrainerRequiredMixin, generic.CreateView):
+class MealEntryCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.MealEntry
     fields = "__all__"
     success_url = reverse_lazy("meal:mealentry-list")
@@ -54,7 +55,7 @@ class FoodLibraryUpdateView(TrainerRequiredMixin, generic.UpdateView):
 
 
 # UpdateView for the MealEntry model
-class MealEntryUpdateView(TrainerRequiredMixin, generic.UpdateView):
+class MealEntryUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.MealEntry
     fields = "__all__"
     template_name = "generic_create_update_form.html"
@@ -71,7 +72,7 @@ class FoodLibraryDeleteView(TrainerRequiredMixin, generic.DeleteView):
 
 
 # DeleteView for the MealEntry model
-class MealEntryDeleteView(TrainerRequiredMixin, generic.DeleteView):
+class MealEntryDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = models.MealEntry
     success_url = reverse_lazy("meal:mealentry-list")
     template_name = "generic_confirm_delete.html"
