@@ -22,6 +22,12 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.urls import path
+from workout.views import WorkoutListView
+from workout.views import WorkOutVideosListView
+from meal.views import FoodLibraryListView
+from meal.views import MealEntryListView
+from notification.views import NotificationListView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -41,6 +47,32 @@ urlpatterns = [
         TemplateView.as_view(template_name="about.html"),
         name="about",
     ),
+    path(
+        "workout/",
+        WorkoutListView.as_view(),
+        name="workout-list",
+    ),
+    path(
+        "workoutvideos/",
+        WorkOutVideosListView.as_view(),
+        name="workoutvideos-list",
+    ),
+    path(
+        "foodlibrary/",
+        FoodLibraryListView.as_view(),
+        name="foodlibrary-list",
+    ),
+    path(
+        "mealentry/",
+        MealEntryListView.as_view(),
+        name="mealentry-list",
+    ),
+    # path(
+    #     "notification/list/",
+    #     NotificationListView.as_view(),
+    #     name="notification-list",
+    # ),
+    
     path("accounts/", include("users.urls")),
     path("profile/", include("user_profile.urls")),
     path("", include("meal.urls")),
