@@ -43,32 +43,39 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         """Get the `UserProfile` object the current logged in user."""
         return self.model.objects.filter(custom_user=self.request.user).first()
 
-    # def get_context_data(self, **kwargs):
-    #     """Add additional fields to the form.
+    def get_context_data(self, **kwargs):
+        """Add additional fields to the form.
 
-    #     In addition to the age, gender, and picture fields of `UserProfile` object,
-    #     add `first_name` and `last_name` fields of the `CustomUser` to the form.
+        In addition to the age, gender, and picture fields of `UserProfile` object,
+        add `first_name` and `last_name` fields of the `CustomUser` to the form.
 
-    #     As `is_student` and `is_teacher` are boolean fields and mutually exclusive,
-    #     combine them into a choice field `account_type`.
+        As `is_student` and `is_teacher` are boolean fields and mutually exclusive,
+        combine them into a choice field `account_type`.
 
-    #     Hence, to the `form` to be rendered by Django template, add three fields:
-    #     `fist_name`, `last_name`, and `account_type`.
+        Hence, to the `form` to be rendered by Django template, add three fields:
+        `fist_name`, `last_name`, and `account_type`.
 
-    #     """
-    #     context = super().get_context_data(**kwargs)
-    #     #account_type = 1 if self.request.user.userprofile.is_student else 2
-    #     context["form"] = UserProfileUpdateForm(
-    #         instance=self.request.user.userprofile,
-    #         initial={
-    #             "first_name": self.request.user.first_name,
-    #             "last_name": self.request.user.last_name,
-    #             #"account_type": account_type,
-    #         },
-    #     )
-    #     return context
+        """
+        context = super().get_context_data(**kwargs)
+        # Determine the account type based on the user profile flags
+        if self.request.user.userprofile.is_paid_account:
+            account_type = 'paid'
+        elif self.request.user.userprofile.is_trainer_account:
+            account_type = 'trainer'
+        else:
+            account_type = 'free'
 
-    def form_valid(self, form: object):
+        context["form"] = UserProfileUpdateForm(
+            instance=self.request.user.userprofile,
+            initial={
+                "first_name": self.request.user.first_name,
+                "last_name": self.request.user.last_name,
+                "account_type": account_type,
+            },
+        )
+        return context
+
+    def form_valid(self, form):
         """Set custom_user Field of the current object as the current user.
 
         - Update the `first_name` and `last_name` fields of the `CustomUser` model.
@@ -91,13 +98,21 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         #     user_profile.is_student, user_profile.is_teacher = False, True
 
         if self.request.user.userprofile.is_free_account:
-            return 'free'
+            user_profile.is_free_account = True
+            user_profile.is_paid_account = False
+            user_profile.is_trainer_account = False
         elif self.request.user.userprofile.is_paid_account:
-            return 'paid'
+            user_profile.is_free_account = False
+            user_profile.is_paid_account = True
+            user_profile.is_trainer_account = False
         elif self.request.user.userprofile.is_trainer_account:
-            return 'trainer'
+            user_profile.is_free_account = False
+            user_profile.is_paid_account = False
+            user_profile.is_trainer_account = True
         else:
-            return 'free'  # Default to free account
+            user_profile.is_free_account = False
+            user_profile.is_paid_account = False
+            user_profile.is_trainer_account = False
 
         user_profile.save()
         custom_user.save()
