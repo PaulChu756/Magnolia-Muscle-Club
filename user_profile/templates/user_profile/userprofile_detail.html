@@ -23,8 +23,12 @@
                          width="auto">
                 {% endif %}
                 <p>
-                    {% if user.userprofile.type_of_account == "Teacher" or user.userprofile.type_of_account == "Student" %}
-                        <span class="badge bg-success">{{ user.userprofile.type_of_account }}</span>
+                    {% if user.userprofile.is_free_account or user.userprofile.is_paid_account or user.userprofile.is_trainer_account %}
+                        <span class="badge bg-success">
+                            {% if user.userprofile.is_free_account %}Free User{% endif %}
+                            {% if user.userprofile.is_paid_account %}Paid User{% endif %}
+                            {% if user.userprofile.is_trainer_account %}Trainer User{% endif %}
+                        </span>
                     {% else %}
                         <span class="badge bg-success">Free User</span>
                     {% endif %}
