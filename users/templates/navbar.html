@@ -1,5 +1,14 @@
 {% load django_bootstrap5 %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Site</title>
+</head>
+<body>
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark justify-content-between">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -9,15 +18,14 @@
         </a>
         <button class="navbar-toggler"
                 type="button"
-                data-toggle="collapse"
+                data-bs-toggle="navbar-collapse"
                 data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault"
-                s
                 aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="#navbarsExampleDefault">
+        <div class="navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">
@@ -34,15 +42,39 @@
                         <i class="fa-solid fa-pager"></i> Wireframes
                     </a>
                 </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="workoutsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-dumbbell"></i>Workouts
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="workoutsDropdown">
+                        <a class="dropdown-item" href="{% url 'workout-list' %}">Workout List</a>
+                        <a class="dropdown-item" href="{% url 'workoutvideos-list' %}">Workout Videos</a>
+                        <a class="dropdown-item" href="{% url 'workoutschedule-list' %}">Workout Schedule</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="mealDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-utensils"></i>Calorie Counter
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="mealDropdown">
+                        <a class="dropdown-item" href="{% url 'foodlibrary-list' %}">Food Library</a>
+                        <a class="dropdown-item" href="{% url 'mealentry-list' %}">Meal Entry</a>
+                    </div>
+                </li>
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="{% url 'notification/list/' %}">
+                        <i class="fa-solid fa-message"></i> Messages
+                    </a>
+                </li> {% endcomment %}
             </ul>
         </div>
-        <div class="navbar-collapse collapse" id="#navbarsExampleDefault">
+        <div class="navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle"
                            role="button"
-                           data-toggle="dropdown"
                            data-bs-toggle="dropdown"
                            aria-expanded="false">
                             {% if user.picture %}
@@ -92,3 +124,6 @@
         </div>
     </div>
 </nav>
+
+</body>
+</html>
