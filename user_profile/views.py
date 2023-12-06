@@ -3,14 +3,17 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView
 from users.forms import CustomUserChangeForm
 from users.models import CustomUser
-from . import models
+from django.views import generic
+from . import forms, mixins, models
 
 """User profile view."""
 from user_profile.forms import UserProfileUpdateForm
 from user_profile.models import UserProfile
 
+FREE, PAID, TRAINER = 1,2,3
+
 #polls app
-class UserProfileDetailView(LoginRequiredMixin, DetailView):
+class UserProfileDetailView(mixins.UserProfileRequiredMixin, generic.DetailView):
     """Profile detail view.
 
     Reason why `slug_field` and `slug_url_kwargs` are set as `None`:
@@ -19,7 +22,7 @@ class UserProfileDetailView(LoginRequiredMixin, DetailView):
 
     """
 
-    model = UserProfile
+    model = models.UserProfile
     template_name = "user_profile/userprofile_detail.html"
     slug_field = None
     slug_url_kwarg = ""
@@ -29,15 +32,14 @@ class UserProfileDetailView(LoginRequiredMixin, DetailView):
         return self.model.objects.filter(custom_user=self.request.user).first()
 
 
-class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Profile update view."""
 
-    model = UserProfile
-    form_class = UserProfileUpdateForm
-    #fields=[""]
+    model = models.UserProfile
+    form_class = forms.UserProfileUpdateForm
     success_url = reverse_lazy("user_profile:profile_detail")
     template_name = "generic_create_update_form.html"
-    extra_context = {"title_text": "Edit Profile", "button_text": "Update"}
+    extra_context = {"title_text": "Update Profile", "button_text": "Update"}
 
     def get_object(self, queryset: list = None):
         """Get the `UserProfile` object the current logged in user."""
@@ -57,25 +59,31 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
         """
         context = super().get_context_data(**kwargs)
-        # Determine the account type based on the user profile flags
-        if self.request.user.userprofile.is_paid_account:
-            account_type = 'paid'
-        elif self.request.user.userprofile.is_trainer_account:
-            account_type = 'trainer'
-        else:
-            account_type = 'free'
 
-        context["form"] = UserProfileUpdateForm(
-            instance=self.request.user.userprofile,
-            initial={
-                "first_name": self.request.user.first_name,
-                "last_name": self.request.user.last_name,
-                "account_type": account_type,
-            },
-        )
+        #FREE, PAID, TRAINER = 1,2,3
+        user_profile = self.request.user.userprofile
+        account_type = 0
+
+        if user_profile.is_paid_account and not user_profile.is_trainer_account:
+            account_type = 2
+        elif not user_profile.is_paid_account and user_profile.is_trainer_account:
+            account_type = 3
+        else:
+            account_type = 1
+
+        initial = {
+            "first_name": self.request.user.first_name,
+            "last_name": self.request.user.last_name,
+            "account_type": account_type,
+        }
+
+        context["form"] = forms.UserProfileUpdateForm(instance=user_profile, initial=initial)
+        if account_type != 0:
+            context["form"].fields["account_type"].disable = True
+
         return context
 
-    def form_valid(self, form):
+    def form_valid(self, form: object):
         """Set custom_user Field of the current object as the current user.
 
         - Update the `first_name` and `last_name` fields of the `CustomUser` model.
@@ -85,67 +93,21 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
         """
         user_profile = form.save(commit=False)
-        custom_user = self.request.user
-        user_profile.custom_user = custom_user
+        user_profile.custom_user = self.request.user
 
+        account_type = 0
+        if form.cleaned_data.get("account_type"):
+            account_type = int(form.cleaned_data.get("account_type"))
+
+        if not (user_profile.is_free_account or user_profile.is_paid_account or user_profile.is_trainer_account):
+            user_profile.is_free_account = account_type == FREE
+            user_profile.is_paid_account = account_type == PAID
+            user_profile.is_trainer_account = account_type == TRAINER
+
+        custom_user = self.request.user
         custom_user.first_name = form.cleaned_data["first_name"]
         custom_user.last_name = form.cleaned_data["last_name"]
-        #account_type = int(form.cleaned_data["account_type"])
-
-        # if account_type == 1:
-        #     user_profile.is_student, user_profile.is_teacher = True, False
-        # else:
-        #     user_profile.is_student, user_profile.is_teacher = False, True
-
-        if self.request.user.userprofile.is_free_account:
-            user_profile.is_free_account = True
-            user_profile.is_paid_account = False
-            user_profile.is_trainer_account = False
-        elif self.request.user.userprofile.is_paid_account:
-            user_profile.is_free_account = False
-            user_profile.is_paid_account = True
-            user_profile.is_trainer_account = False
-        elif self.request.user.userprofile.is_trainer_account:
-            user_profile.is_free_account = False
-            user_profile.is_paid_account = False
-            user_profile.is_trainer_account = True
-        else:
-            user_profile.is_free_account = False
-            user_profile.is_paid_account = False
-            user_profile.is_trainer_account = False
-
         user_profile.save()
         custom_user.save()
+
         return super().form_valid(form)
-
-
-
-# class UserProfileDetailView(generic.DetailView):
-#     model = models.UserProfile
-
-
-# class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
-#     """Profile update view."""
-
-#     model = CustomUser
-#     form_class = CustomUserChangeForm
-#     template_name = "registration/profile_update.html"
-#     success_url = reverse_lazy("users:profile_detail")
-
-#     def form_valid(self, form):
-#         form.instance.modified_by = self.request.user
-#         userprofile = models.UserProfile.objects.get_or_create(
-#             first_name=form.cleaned_data["first_name"],
-#             last_name=form.cleaned_data["last_name"],
-#             picture=form.cleaned_data["picture"],
-#             weight=form.cleaned_data["weight"],
-#             height=form.cleaned_data["height"],
-#             phone=form.cleaned_data["phone"],
-#             gender=form.cleaned_data["gender"],
-#         )
-#         userprofile.save()
-#         return super().form_valid(form)
-
-#     def get_object(self, queryset=None):
-#         """Owner of the object should be the current user."""
-#         return self.request.user

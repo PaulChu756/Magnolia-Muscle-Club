@@ -4,20 +4,6 @@ from django.dispatch import receiver
 
 from users.models import CustomUser
 
-
-# TYPE_CHOICES = (
-#     ("Free", "Free"),
-#     ("Paid", "Paid"),
-#     ("Trainer", "Trainer"),
-# )
-
-# GENDER_CHOICES = (
-#     ("Male", "Male"),
-#     ("Female", "Female"),
-#     ("Other", "Other"),
-# )
-
-
 # Create your models here.
 class UserProfile(models.Model):
     """User Profile model."""
