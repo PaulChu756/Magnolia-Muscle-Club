@@ -62,9 +62,8 @@ class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
 
         #FREE, PAID, TRAINER = 1,2,3
         user_profile = self.request.user.userprofile
+
         account_type = 0
-
-
         if user_profile.is_free_account and not user_profile.is_paid_account and not user_profile.is_trainer_account:
             account_type = 1
         elif user_profile.is_paid_account and not user_profile.is_trainer_account and not user_profile.is_free_account:

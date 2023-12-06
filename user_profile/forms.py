@@ -1,7 +1,8 @@
 from django import forms
-from user_profile.models import UserProfile
 
-ACCOUNT_CHOICES = ((0, "Free"), (1, "Paid"), (2, "Trainer"))
+from . import models
+
+ACCOUNT_CHOICES = ((0, "None"), (1, "Free"), (2, "Paid"), (3, "Trainer"))
 
 class UserProfileUpdateForm(forms.ModelForm):
     """User profile change view."""
@@ -11,7 +12,5 @@ class UserProfileUpdateForm(forms.ModelForm):
     account_type = forms.ChoiceField(choices=ACCOUNT_CHOICES, required=False)
 
     class Meta:
-        """Meta class."""
-
-        model = UserProfile
+        model = models.UserProfile
         fields = ["first_name", "last_name", "gender", "age", "picture", "weight", "height", "phone"]
