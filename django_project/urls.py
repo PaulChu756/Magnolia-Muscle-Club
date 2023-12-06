@@ -27,7 +27,7 @@ from workout.views import WorkoutListView
 from workout.views import WorkOutVideosListView
 from meal.views import FoodLibraryListView
 from meal.views import MealEntryListView
-from notification.views import NotificationListView
+from workout.views import WorkoutScheduleListView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -56,6 +56,11 @@ urlpatterns = [
         "workoutvideos/",
         WorkOutVideosListView.as_view(),
         name="workoutvideos-list",
+    ),
+     path(
+        "workoutschedule/",
+        WorkoutScheduleListView.as_view(),
+        name="workoutschedule-list",
     ),
     path(
         "foodlibrary/",
