@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # third-party apps
     "django_bootstrap5",
     "fontawesomefree",
+    "bootstrap_datepicker_plus",
     # local apps
     "users.apps.UsersConfig",
     "meal.apps.MealConfig",

@@ -1,4 +1,7 @@
 from django.db import models
+from django import forms
+from bootstrap_datepicker_plus.widgets import DatePickerInput
+
 
 WORKOUT_CHOICES = (
     ("Cardio", "Cardio"),
@@ -50,6 +53,15 @@ class WorkoutSchedule(models.Model):
 
     def __str__(self):
         return f"{self.workoutName}"
+
+class WorkoutScheduleForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutSchedule
+        fields = ['workoutName', 'reps', 'sets', 'start_date', 'end_date']
+        widgets = {
+            'start_date': DatePickerInput(),  # Use DatePickerInput for start_date
+            'end_date': DatePickerInput(),    # Use DatePickerInput for end_date
+        }
 
 
 class Day(models.Model):
