@@ -64,12 +64,13 @@ class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
         user_profile = self.request.user.userprofile
         account_type = 0
 
-        if user_profile.is_paid_account and not user_profile.is_trainer_account:
-            account_type = 2
-        elif not user_profile.is_paid_account and user_profile.is_trainer_account:
-            account_type = 3
-        else:
+
+        if user_profile.is_free_account and not user_profile.is_paid_account and not user_profile.is_trainer_account:
             account_type = 1
+        elif user_profile.is_paid_account and not user_profile.is_trainer_account and not user_profile.is_free_account:
+            account_type = 2
+        elif user_profile.is_trainer_account and not user_profile.is_free_account and not user_profile.is_paid_account:
+            account_type = 3
 
         initial = {
             "first_name": self.request.user.first_name,
