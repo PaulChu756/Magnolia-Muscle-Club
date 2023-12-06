@@ -19,5 +19,4 @@ pylint-django
 pytest-django
 pytest-cov
 Pillow
-#bootstrap-datepicker-plus
 django-bootstrap-datepicker-plus
