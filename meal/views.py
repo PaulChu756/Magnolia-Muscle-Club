@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import generic
 from user_profile.mixins import MemberRequiredMixin, TrainerRequiredMixin
+from django.template.loader import get_template
+
 
 from . import models, mixins
 
@@ -52,13 +54,17 @@ class FoodLibraryDetailView(generic.DetailView):
 
 class MealEntryDetailView(LoginRequiredMixin, generic.DetailView):
     model = models.MealEntry
-    template_name = "mealentry_detail.html"
+    template_name = "meal/mealentry_detail.html"
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.user != self.request.user:
             raise Http404("You do not have permission to access this page.")
         context = self.get_context_data(object=self.object)
+
+        # Debugging output
+        print(f"Template path: {self.template_name}")
+
         return self.render_to_response(context)
 
 
