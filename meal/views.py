@@ -54,7 +54,7 @@ class FoodLibraryDetailView(generic.DetailView):
 
 class MealEntryDetailView(LoginRequiredMixin, generic.DetailView):
     model = models.MealEntry
-    template_name = "mealentry_detail.html"
+    template_name = "meal/mealentry_detail.html"
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -65,7 +65,7 @@ class MealEntryDetailView(LoginRequiredMixin, generic.DetailView):
         # Debugging output
         print(f"Template path: {self.template_name}")
 
-        return self.render_to_response(context, template_name=self.template_name)
+        return self.render_to_response(context)
 
 
 # UpdateView for the FoodLibrary model
